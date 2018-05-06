@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 5, 2018 5:41:18 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="feedz" name="com.feedz.models.User" optimistic-lock="version" table="user">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="firstName" type="string">
+      <column length="50" name="first_name"/>
+    </property>
+    <property name="lastName" type="string">
+      <column length="50" name="last_name"/>
+    </property>
+    <property name="email" type="string">
+      <column length="50" name="email"/>
+    </property>
+    <property name="password" type="string">
+      <column length="100" name="password"/>
+    </property>
+    <property name="hasNotifications" type="boolean">
+      <column name="has_notifications" not-null="true"/>
+    </property>
+    <property name="created" type="timestamp">
+      <column length="19" name="created"/>
+    </property>
+    <property name="updated" type="timestamp">
+      <column length="19" name="updated"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="feedUsers" table="feed_user">
+      <key>
+        <column name="user_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.feedz.models.FeedUser"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,4 +1,4 @@
-package com.feedz.feedz;
+package com.feedz.models;
 // Generated May 5, 2018 5:41:17 PM by Hibernate Tools 4.3.1
 
 

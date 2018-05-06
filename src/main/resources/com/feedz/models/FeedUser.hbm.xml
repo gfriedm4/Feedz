@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 5, 2018 5:41:18 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="feedz" name="com.feedz.models.FeedUser" optimistic-lock="version" table="feed_user">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.feedz.models.Feed" fetch="select" name="feed">
+      <column name="feed_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.feedz.models.User" fetch="select" name="user">
+      <column name="user_id" not-null="true"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

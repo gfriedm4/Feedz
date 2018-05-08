@@ -23,7 +23,7 @@ public class UserController {
      * @param user
      * @return the User that was created
      */
-    public User createUser(User user) {
+    public static User createUser(User user) {
         Session session = HibernateConnector.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -51,7 +51,7 @@ public class UserController {
      * @param id
      * @return the User with the given id
      */
-    public User getUserById(Integer id) {
+    public static User getUserById(Integer id) {
         Session session = HibernateConnector.getSessionFactory().openSession();
 
         try {
@@ -79,7 +79,7 @@ public class UserController {
      * @param id
      * @return the User with the given id
      */
-    public User getUserByEmail(String email) {
+    public static User getUserByEmail(String email) {
         Session session = HibernateConnector.getSessionFactory().openSession();
 
         try {
@@ -114,7 +114,7 @@ public class UserController {
      * @param user
      * @return the updated User
      */
-    public User updateUser(User user) {
+    public static User updateUser(User user) {
         Session session = HibernateConnector.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -142,7 +142,7 @@ public class UserController {
      * @param id
      * @return if User deletion was successful
      */
-    public boolean deleteUser(Integer id) {
+    public static boolean deleteUser(Integer id) {
         Session session = HibernateConnector.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -176,7 +176,7 @@ public class UserController {
      * List all Users
      * @return list of all Users
      */
-    public List<User> listUsers() {
+    public static List<User> listUsers() {
         Session session = HibernateConnector.getSessionFactory().openSession();
         
         try {

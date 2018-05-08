@@ -28,7 +28,7 @@
     <property name="updated" type="timestamp">
       <column length="19" name="updated"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="feedUsers" table="feed_user">
+    <set fetch="select" inverse="true" lazy="false" name="feedUsers" table="feed_user">
       <key>
         <column name="user_id" not-null="true"/>
       </key>

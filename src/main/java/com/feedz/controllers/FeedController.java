@@ -5,9 +5,11 @@ import com.feedz.models.Feed;
 import com.feedz.utils.HibernateConnector;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  * Wrapper controller around the CRUD operations of a Feed
@@ -20,7 +22,7 @@ public class FeedController {
      * @param feed
      * @return the Feed that was created
      */
-    public Feed createFeed(Feed feed) {
+    public static Feed createFeed(Feed feed) {
         Session session = HibernateConnector.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -48,7 +50,7 @@ public class FeedController {
      * @param id
      * @return the Feed with the given id
      */
-    public Feed getFeed(Integer id) {
+    public static Feed getFeed(Integer id) {
         Session session = HibernateConnector.getSessionFactory().openSession();
 
         try {
@@ -76,7 +78,7 @@ public class FeedController {
      * @param feed
      * @return the updated Feed
      */
-    public Feed updateFeed(Feed feed) {
+    public static Feed updateFeed(Feed feed) {
         Session session = HibernateConnector.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -104,7 +106,7 @@ public class FeedController {
      * @param id
      * @return if Feed deletion was successful
      */
-    public boolean deleteFeed(Integer id) {
+    public static boolean deleteFeed(Integer id) {
         Session session = HibernateConnector.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -138,20 +140,24 @@ public class FeedController {
      * List all Feeds
      * @return list of all Feeds
      */
-    public List<Feed> listFeeds() {
+    public static List<Feed> listFeeds() {
         Session session = HibernateConnector.getSessionFactory().openSession();
         
         try {
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Feed> query = builder.createQuery(Feed.class);
+            CriteriaQuery<Feed> cq = builder.createQuery(Feed.class);
+            Root<Feed> root = cq.from(Feed.class);
+            cq.select(root);
             
-            List<Feed> feeds = session.createQuery(query).getResultList();
+            Query<Feed> q = session.createQuery(cq);
+            List<Feed> feeds = q.getResultList();
+            session.close();
             
             session.close();
             return feeds;
         }
         catch (HibernateException e) {
-                    
+            e.printStackTrace();
         }
         finally {
             session.close();

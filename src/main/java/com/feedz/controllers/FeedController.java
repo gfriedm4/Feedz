@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
+import org.hibernate.MultiIdentifierLoadAccess;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -59,6 +60,30 @@ public class FeedController {
             
             if (feed != null) {
                 return feed;
+            }
+            else {
+                return null;
+            }
+        }
+        catch (HibernateException e) {
+                      
+        }
+        finally {
+            session.close();
+        }
+        return null;
+    }
+    
+    public static List<Feed> getFeeds(List<Integer> ids) {
+        Session session = HibernateConnector.getSessionFactory().openSession();
+
+        try {
+            MultiIdentifierLoadAccess<Feed> multiLoadAccess = session.byMultipleIds(Feed.class);
+            List<Feed> feeds = multiLoadAccess.multiLoad(ids);
+            session.close();
+            
+            if (feeds != null) {
+                return feeds;
             }
             else {
                 return null;

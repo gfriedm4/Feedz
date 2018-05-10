@@ -12,8 +12,8 @@
 	<div class="content">
 		<h1>Register</h1>
 		<div class="center-content">
-		<form action="" method="post">
-			<input class="form-input" type="hidden" name="action" value="add">
+		<form action="UserServlet" method="post">
+			<input class="form-input" type="hidden" name="action" value="register">
 	        <label class="form-label">Email</label>
 	        <input class="form-input" type="email" name="email" value="${user.email}"><br>
 	        <label class="form-label">Password</label>

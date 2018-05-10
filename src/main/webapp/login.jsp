@@ -10,7 +10,7 @@
 </head>
 	<body>
 	<div class="content">
-        <form method="post" action="login.jsp">
+        <form method="POST" action="UserServlet">
             <table width="280em">
                 <tbody>
                 	<tr>
@@ -35,6 +35,7 @@
                     
                 </tbody>
             </table>
+            <input type="hidden" name="action" value="Login"/>
         </form>
     </div>
 	<%@ include file="/includes/footer.jsp" %>

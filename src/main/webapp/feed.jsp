@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Feedz</title>
-<link rel="stylesheet" type="text/css" href="../styles/main.css">
+<link rel="stylesheet" type="text/css" href="./styles/main.css">
 		<%@ include file="/includes/header.html" %>
 </head>
 <body>
@@ -23,35 +23,42 @@
                         <% 
                             List<FeedItem> feeds = (ArrayList<FeedItem>)request.getAttribute("feedItems");
 
-                            for(FeedItem feedItem : feeds)
-                            {
-                                %>
-                                <div class="feed-item">
-                                <%
-                                out.print("<h2>" + feedItem.getTitle() + "</h2>");
-                                
-                                if (!feedItem.getDescription().isEmpty()) {
-                                    %>
-                                    <div class="feed-description">
-                                    <%    
-                                    out.print(feedItem.getDescription());
-                                    %>
-                                    </div>
-                                    <% 
-                                }
-                                if (!feedItem.getLink().isEmpty()) {
-                                    %>
-                                    <a class="feed-link" href="<%= feedItem.getLink() %>">
-                                    <%    
-                                        out.print(feedItem.getLink());
-                                    %>    
-                                    </a>
-                                    <%
-                                }
-                                %>
-                                </div>
-                                <%
-                            }
+                        	    if(feeds != null){
+	                            for(FeedItem feedItem : feeds)
+	                            {
+	                                %>
+	                                <div class="feed-item">
+	                                <%
+	                                out.print("<h2>" + feedItem.getTitle() + "</h2>");
+	                                
+	                                if (!feedItem.getDescription().isEmpty()) {
+	                                    %>
+	                                    <div class="feed-description">
+	                                    <%    
+	                                    out.print(feedItem.getDescription());
+	                                    %>
+	                                    </div>
+	                                    <% 
+	                                }
+	                                if (!feedItem.getLink().isEmpty()) {
+	                                    %>
+	                                    <a class="feed-link" href="<%= feedItem.getLink() %>">
+	                                    <%    
+	                                        out.print(feedItem.getLink());
+	                                    %>    
+	                                    </a>
+	                                    <%
+	                                }
+	                                %>
+	                                </div>
+	                                <%
+	                            }
+                        	    }
+                        	    else{
+                        	    	%>
+                        	    		<div>No feeds yet...</div>
+                        	    	<%
+                        	    }
 
                         %>
 		</div>

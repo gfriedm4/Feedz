@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>My Profile</title>
 <link rel="stylesheet" type="text/css" href="styles/main.css">
 <%@ include file="/includes/header.html" %>
 </head>
@@ -12,17 +12,30 @@
 	<%@ include file="/includes/topnav.jsp" %>
 	<div class="content">
 		<h1>My Profile</h1>
-		<div class="center-content">
-			<label>Email:</label> <br />
-			<span>${user.email}</span> <br />
-			<label>First Name:</label> <br />
-			<span>${user.firstName}</span> <br />
-			<label>Last Name:</label> <br />
-			<span>${user.lastName}</span><br />
-			<label>Notifications:</label> <br />
-			<span>${user.hasNotifications}</span><br />
-        	<input type="hidden" name="action" value="editProfile">
-	        <a href="editprofile.jsp"><input class="gray-flat-button" type="submit" value="Edit Profile" class="margin_left"></a>
+		<div class="content-white">
+			<table class="invisible">
+				<tr>
+					<td><label>First Name:</label></td>
+					<td>${user.firstName}</td>
+				</tr>
+				<tr>
+					<td><label>Last Name:</label></td>
+					<td>${user.lastName}</td>
+				</tr>
+								<tr>
+					<td><label>Email:</label></td>
+					<td>${user.email}</td>
+				</tr>
+				<tr>
+					<td><label>Notifications Opt-in:</label></td>
+					<td><input class="checkbox" type="checkbox" name="hasNotifications" disabled="disabled" checked="${user.hasNotifications}"></td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+				</table>
+			<div class="center">
+			<input type="hidden" name="action" value="editProfile">
+		    <a href="editprofile.jsp"><input class="gray-flat-button" type="submit" value="Edit Profile" class="margin_left"></a>
+		    </div>
 		</div>
 	</div>
 	<%@ include file="/includes/footer.jsp" %>

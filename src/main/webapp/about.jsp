@@ -9,6 +9,7 @@
 <%@ include file="/includes/header.html" %>
 </head>
 <body>
+	<%@ include file="/includes/topnav.jsp" %>
 	<div class="content">
 		<h1>About Feedz</h1>
 		Feedz is a personalized RSS Reader consolidator that enables users to log onto its site and browse RSS feeds that they have subscribed to.

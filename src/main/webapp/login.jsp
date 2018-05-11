@@ -9,9 +9,10 @@
 	<%@ include file="/includes/header.html" %>
 </head>
 	<body>
+	<div class="empty-topnav" > </div>
 	<div class="content">
-        <form method="POST" action="UserServlet">
-            <table width="280em">
+        <form action="UserServlet" method="POST">
+            <table class="standard" width="280em">
                 <tbody>
                 	<tr>
                 		<td><b>Login</b></td>
@@ -21,23 +22,22 @@
                         <td colspan="2">Email</td>
                     </tr>
                     <tr>
-                        <td colspan="2" align='center'><input type="text" name="email" value=""  style="width:98%"/></td>
+                        <td colspan="2" align='center'><input type="email" name="email" value=""  style="width:98%"  required/></td>
                     </tr>
                     <tr>
                         <td colspan="2">Password</td>
                     </tr>
                     <tr>
-                        <td colspan="2" align='center'><input type="password" name="password" value="" style="width:98%" /></td>
+                        <td colspan="2" align='center'><input type="password" name="password" value="" style="width:98%"  required/></td>
                     </tr>
                     <tr>
+			            <input type="hidden" name="action" value="Login"/>
                         <td colspan="2" align='center'> <input class="green-flat-button" type="submit" value="Login" style="width:100%"/></td>
                     </tr>
                     
                 </tbody>
             </table>
-            <input type="hidden" name="action" value="Login"/>
         </form>
     </div>
-	<%@ include file="/includes/footer.jsp" %>
     </body>
 </html>

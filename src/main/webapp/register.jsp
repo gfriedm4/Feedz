@@ -11,23 +11,25 @@
 <body>
 	<div class="content">
 		<h1>Register</h1>
-		<div class="center-content">
+		<div class="content-white">
 		<form action="UserServlet" method="post">
 			<input class="form-input" type="hidden" name="action" value="register">
 	        <label class="form-label">Email</label>
-	        <input class="form-input" type="email" name="email" value="${user.email}"><br>
+	        <input class="form-input" type="email" name="email" value="" required><br>
 	        <label class="form-label">Password</label>
-	        <input class="form-input" type="password" name="password" value="${user.password}"><br>
+	        <input class="form-input" type="password" name="password" value="" required><br>
 	        <label class="form-label">Confirm Password</label>
-	        <input class="form-input" type="password" name="confirmPassword"><br>
+	        <input class="form-input" type="password" name="confirmPassword" required><br>
 	       	<label class="form-label">First Name</label>
-	        <input class="form-input" type="text" name="firstName" value="${user.firstName}"><br>
+	        <input class="form-input" type="text" name="firstName" value="" required><br>
 	        <label class="form-label">Last Name</label>
-	        <input class="form-input" type="text" name="lastName" value="${user.lastName}"><br>        
-	        <label class="form-label">Notifications</label>
-	        <input class="checkbox" type="checkbox" name="hasNotifications" value="${user.hasNotifications}"><br>        
+	        <input class="form-input" type="text" name="lastName" value="" required><br>        
+	        <label class="form-label">Notifications Opt-in</label>
+	        <input class="checkbox" type="checkbox" name="hasNotifications" value=""><br>        
 	        <label>&nbsp;</label>
-	        <input class="green-flat-button" type="submit" value="Register" class="margin_left">
+	        <div class="center">
+	        	<input class="green-flat-button" type="submit" value="Register" class="margin_left">
+	        </div>
 		</form>
 		</div>
 	</div>

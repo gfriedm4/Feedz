@@ -90,7 +90,7 @@ public class UserServlet extends HttpServlet {
 		
 		if(email != null) {
 			User user = UserController.getUserByEmail(email);
-			if(user != null) {
+			if(user == null) {
 				User newUser = new User();
 				newUser.setEmail(email);
 				newUser.setPassword(password);
@@ -98,7 +98,7 @@ public class UserServlet extends HttpServlet {
 				newUser.setLastName(lastName);
 				newUser.setHasNotifications(notificationsVal);
 
-				UserController.createUser(user);
+				UserController.createUser(newUser);
 				
 				request.getSession().setAttribute("user", newUser);
 				return "/feed.jsp";

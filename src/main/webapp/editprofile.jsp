@@ -12,25 +12,64 @@
 	<%@ include file="/includes/topnav.jsp" %>
 	<div class="content">
 		<h1>Edit Profile</h1>
-		<div class="center-content">
-		<form action="" method="post">
-			<input class="form-input" type="hidden" name="action" value="add">
-	        <label class="form-label">Email</label>
-	        <input class="form-input" type="email" name="email" value="${user.email}"><br>
-	        <label class="form-label">Password</label>
-	        <input class="form-input" type="password" name="password" value="${user.password}"><br>
-	        <label class="form-label">Confirm Password</label>
-	        <input class="form-input" type="password" name="confirmPassword"><br>
-	       	<label class="form-label">First Name</label>
-	        <input class="form-input" type="text" name="firstName" value="${user.firstName}"><br>
-	        <label class="form-label">Last Name</label>
-	        <input class="form-input" type="text" name="lastName" value="${user.lastName}"><br>        
-	        <label class="form-label">Notifications</label>
-	        <input class="checkbox" type="checkbox" name="hasNotifications" value="${user.hasNotifications}"><br>        
-	        <label>&nbsp;</label>
-	        <input class="green-flat-button" type="submit" value="Update" class="margin_left">
+		<div class="content-white">
+		<form action="UserServlet" method="post">
+			<h3>Update Profile</h3>
+			<table class="invisible">
+				<tr>
+					<td><label class="form-label">First Name</label></td>
+					<td><input class="form-input" type="text" name="firstName" value="${user.firstName}" required></td>
+				</tr>
+				<tr>
+					<td><label class="form-label">Last Name</label></td>
+					<td><input class="form-input" type="text" name="lastName" value="${user.lastName}" required></td>
+				</tr>
+				<tr>
+					<td><label class="form-label">Email</label></td>
+					<td><input class="form-input" type="email" name="email" value="${user.email}" required></td>
+				</tr>
+				<tr>
+					<td><label class="form-label">Notifications Opt-in</label></label></td>
+					<td><input class="checkbox" type="checkbox" name="hasNotifications" checked="${user.hasNotifications}"></td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+			</table>
+	   	    <div class="center">
+	   	     	<input type="hidden" name="action" value="updateProfile"/>
+	       	 	<input class="green-flat-button" type="submit" value="Update Profile" class="margin_left">
+	   	    </div>
+   	     </form>
+   	     <br>
+   	     <hr>
+   	     <br>
+	     <form action="UserServlet" method="post">
+	     	<h3>Change Password</h3>
+			<table class="invisible">
+				<tr>
+					<td><label class="formLabel">Old Password</label></td>
+					<td><input class="form-input" type="password" name="oldPassword" required"></td>
+				</tr>
+				<tr>
+					<td><label class="formLabel">New Password</label></td>
+					<td><input class="form-input" type="password" name="newPassword" required"></td>
+				</tr>
+				<tr>
+					<td><label class="formLabel">Confirm New Password</label></td>
+					<td><input class="form-input" type="password" name="confirmNewPassword" required><br></td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+			</table>
+	   	    <div class="center">
+	   	     	<input type="hidden" name="action" value="updatePassword"/>
+	        	<input class="green-flat-button" type="submit" value="Change Password" class="margin_left">
+	   	    </div>	
 	     </form>
-	     <a href="profile.jsp"><input class="gray-flat-button" type="submit" value="Cancel" class="margin_left"></a>   		
+	     <br>
+   	     <hr>
+   	     <br>
+   	     <div class="center">
+	     	<a href="profile.jsp"><input class="gray-flat-button" type="submit" value="Cancel" class="margin_left"></a>
+	     </div>  		
 		</div>
 	</div>
 	<%@ include file="/includes/footer.jsp" %>

@@ -9,6 +9,7 @@
 <%@ include file="/includes/header.html" %>
 </head>
 <body>
+	<%@ include file="/includes/topnav.jsp" %>
 	<div class="content">
 		<h1>Contact Us</h1>
 		Call us at 000-000-0000 or email us at email@email.com

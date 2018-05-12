@@ -122,4 +122,19 @@ $(function() {
 		  },
 	  },
   });
+  
+  $("form[name='newFeed']").validate({
+	  rules: {
+		feedUrl: {
+			required: true,
+			url: true,
+		},
+	  },
+	  messages: {
+		feedUrl: {
+			required: "Please provide a Url",
+			url: "Please provide a valid Url"
+		},  
+	  },
+  });
 });

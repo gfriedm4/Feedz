@@ -22,6 +22,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import com.feedz.models.User;
+import java.util.HashMap;
 import java.util.Set;
 import org.hibernate.HibernateException;
 
@@ -91,6 +92,18 @@ public class FeedUtilities {
         } catch (FeedException | IOException | HibernateException e) {
             return toReturn;
         }
+    }
+    
+    public static HashMap<Integer, String> getFeedList() {
+        HashMap<Integer, String> toReturn = new HashMap<>();
+        
+        List<Feed> feeds = FeedController.listFeeds();
+        
+        for (Feed feed : feeds) {
+            toReturn.put(feed.getId(), feed.getTitle());
+        }
+        
+        return toReturn;
     }
 
 }

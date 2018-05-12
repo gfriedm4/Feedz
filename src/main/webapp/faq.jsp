@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>FAQ</title>
 <link rel="stylesheet" type="text/css" href="styles/main.css">
-<%@ include file="/includes/header.html" %>
 </head>
 <body>
 	<%@ include file="/includes/topnav.jsp" %>

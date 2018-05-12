@@ -97,12 +97,12 @@ public class UserServlet extends HttpServlet {
 			}
 			else {
 				// something went wrong, user couldnt be created
-				return "/register.jsp";
+				return "/login_error.jsp";
 			}
 		}
 		else {
 			// Invalid input
-			return "/register.jsp";
+			return "/login_error.jsp";
 		}
 	}
 

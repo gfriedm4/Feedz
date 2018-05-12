@@ -9,58 +9,54 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Feedz</title>
-<link rel="stylesheet" type="text/css" href="./styles/main.css">
-		<%@ include file="/includes/header.html" %>
+<link rel="stylesheet" type="text/css" href="/styles/main.css">
 </head>
 <body>
-
-	<%@ include file="/includes/topnav.jsp" %>
-	
-	<div id="main">
 		<div class="content">
+		<%@ include file="/includes/topnav.jsp" %>
+		<div class="main">
+		<%@ include file="/includes/feednav.jsp" %>	
 			<h1>Your Feedz</h1>
-			<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-                        <% 
-                            List<FeedItem> feeds = (ArrayList<FeedItem>)request.getAttribute("feedItems");
-
-                        	    if(feeds != null){
-	                            for(FeedItem feedItem : feeds)
-	                            {
-	                                %>
-	                                <div class="feed-item">
-	                                <%
-	                                out.print("<h2>" + feedItem.getTitle() + "</h2>");
-	                                
-	                                if (!feedItem.getDescription().isEmpty()) {
-	                                    %>
-	                                    <div class="feed-description">
-	                                    <%    
-	                                    out.print(feedItem.getDescription());
-	                                    %>
-	                                    </div>
-	                                    <% 
-	                                }
-	                                if (!feedItem.getLink().isEmpty()) {
-	                                    %>
-	                                    <a class="feed-link" href="<%= feedItem.getLink() %>">
-	                                    <%    
-	                                        out.print(feedItem.getLink());
-	                                    %>    
-	                                    </a>
-	                                    <%
-	                                }
-	                                %>
-	                                </div>
-	                                <%
-	                            }
-                        	    }
-                        	    else{
-                        	    	%>
-                        	    		<div>No feeds yet...</div>
-                        	    	<%
-                        	    }
-
-                        %>
+			<% 
+				List<FeedItem> feeds = (ArrayList<FeedItem>)request.getAttribute("feedItems");
+		 	 	if(feeds != null){
+			    for(FeedItem feedItem : feeds)
+			    {
+			%>
+			  <div class="feed-item">
+			<%
+					out.print("<h2>" + feedItem.getTitle() + "</h2>");
+				if (!feedItem.getDescription().isEmpty()) {
+				%>
+			<div class="feed-description">
+			<%    
+					out.print(feedItem.getDescription());
+				%>
+			</div>
+			<% 
+			     }
+			     if (!feedItem.getLink().isEmpty()) {
+				%>
+			<a class="feed-link" href="<%= feedItem.getLink() %>">
+			<%    
+					out.print(feedItem.getLink());
+				%>    
+			</a>
+			<%
+					}
+				%>
+			</div>
+			<%
+					}
+				}
+				else{
+				%>
+			<div>Hm... looks like you don't have any feeds yet. Click  
+			<a href="editfeed.jsp">Edit Feed</a>
+			to get started!</div>
+			<%
+				}
+				%>
 		</div>
 	</div>
 		<%@ include file="/includes/footer.jsp" %>

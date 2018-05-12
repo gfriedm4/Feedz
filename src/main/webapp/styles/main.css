@@ -48,6 +48,7 @@ table.standard {
 }
 
 table.standard  th {
+	font-size: 0.9em; 
     border: none;
     padding: 5px;
 }
@@ -74,6 +75,13 @@ table.invisible td {
     padding: 6px;
 }
 
+h1 {
+	padding-left: 50px;
+}
+
+.error {
+	color: red;
+}
 
 .content {
     background-color: #d0d5e6;
@@ -81,6 +89,8 @@ table.invisible td {
     font-family: Verdana, Arial, sans-serif;
     width: 100%;
     box-sizing: border-box;
+    
+	margin-top: 30px;
 }
 
 .feed-content {
@@ -96,7 +106,7 @@ table.invisible td {
 .content-white {
     background-color: white;
     padding: 30px;
-    width: 36em;
+    width: 80%;
     margin: auto;
 }
 
@@ -109,10 +119,51 @@ table.invisible td {
 	padding: 14px;
 }
 
+.full-green-flat-button {
+  width: 100%;
+  height: 60px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #00e6ac;
+  border: 0;
+  border-bottom: 2px solid #12ab8d;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #12ab8d;
+  box-shadow: inset 0 -2px #12ab8d;
+}
+.full-green-flat-button:hover {
+  background-color: #b3f7e9;
+  color: #009570;
+  top: 1px;
+}
+.full-green-flat-button:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.small-green-button {
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #00e6ac;
+  border: 0;
+  cursor: pointer;
+}
+.small-green-button:hover {
+  background-color: #b3f7e9;
+  color: #009570;
+}
 
 .green-flat-button {
-  width: 40%;
-  height: 60px;
+  width: 12em;
+  height: 50px;
   font-size: 20px;
   color: white;
   text-align: center;
@@ -138,7 +189,7 @@ table.invisible td {
 
 .gray-flat-button {
   width: 40%;
-  height: 60px;
+  height: 50px;
   padding: 0;
   font-size: 20px;
   color: white;
@@ -193,75 +244,73 @@ table.invisible td {
     height: 5px;
 }
 
-.topnav {
-    text-align: right;
-    padding-right: 10px;
-	color: white;
-    background-color: #333;
+ul {
+    position: fixed;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+    background-color: #333;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
-.topnav a {
+li {
     float: left;
-    color: #f2f2f2;
+}
+
+li a {
+    display: block;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
 }
 
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
+li a:hover:not(.active) {
+    background-color: #111;
 }
 
-.topnav a.active {
-    background-color: #6a7ab0;
-    color: white;
+.active {
+    background-color: #4CAF50;
 }
 
-.sidenav {
+
+.feednav {
+	margin-top: 43px;
     height: 100%;
-    width: 0;
+    width: 160px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: #111;
+    color: white;
     overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 10px;
 }
 
-.sidenav a {
-    padding: 8px 8px 8px 32px;
+.feednav a {
+    padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
-    transition: 0.3s;
 }
 
-.sidenav a:hover {
+.feednav a:hover {
     color: #f1f1f1;
 }
 
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-#main {
-    transition: margin-left .5s;
-    padding: 16px;
+.main {
+    margin-left: 160px; /* Same as the width of the feednav */
+    padding: 0px 10px;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .feednav {padding-top: 15px;}
+  .feednav a {font-size: 18px;}
 }
 
 .header-title {

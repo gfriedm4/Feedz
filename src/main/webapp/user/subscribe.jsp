@@ -5,15 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Subscribe to a Feed</title>
-<link rel="stylesheet" type="text/css" href="styles/main.css">
-<%@ include file="/includes/header.html" %>
+<link rel="stylesheet" type="text/css" href="../styles/main.css">
 </head>
 <body>
-	<%@ include file="/includes/topnav.jsp" %>
+	<%@ include file="/includes/user/topnav.jsp" %>
 	<div class="content">
 		<h1>Subscribe to a Feed</h1>
 		
 	</div>
-	<%@ include file="/includes/footer.jsp" %>
+	<%@ include file="/includes/user/footer.jsp" %>
 </body>
 </html>

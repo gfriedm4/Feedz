@@ -5,11 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit Feed</title>
-<link rel="stylesheet" type="text/css" href="styles/main.css">
-<%@ include file="/includes/header.html" %>
+<link rel="stylesheet" type="text/css" href="../styles/main.css">
 </head>
 <body>
-	<%@ include file="/includes/topnav.jsp" %>
+	<%@ include file="/includes/user/topnav.jsp" %>
 	<div class="content">
 		<h1>Edit My Feed</h1>
 		<table>
@@ -58,6 +57,6 @@
 			<a href="profile.jsp"><input class="gray-flat-button" type="submit" value="Cancel" class="margin_left"></a>   		
 		</form>
 	</div>
-	<%@ include file="/includes/footer.jsp" %>
+	<%@ include file="/includes/user/footer.jsp" %>
 </body>
 </html>

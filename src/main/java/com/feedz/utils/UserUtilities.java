@@ -28,7 +28,7 @@ public class UserUtilities {
     }
     
     public static User registerUser(String email, String password, String firstName, String lastName,
-    		boolean hasNotifications) {
+    		boolean hasNotifications, Integer role) {
         User newUser = new User();
         
         newUser.setEmail(email);
@@ -36,7 +36,8 @@ public class UserUtilities {
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
         newUser.setHasNotifications(hasNotifications);
-       
+        newUser.setRole(role);
+        
         return UserController.createUser(newUser);
     }
     

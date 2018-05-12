@@ -3,6 +3,7 @@ package com.feedz.models;
 
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,16 +13,25 @@ import java.util.Set;
 public class User  implements java.io.Serializable {
 
 
-     private Integer id;
-     private String firstName;
-     private String lastName;
-     private String email;
-     private String password;
-     private boolean hasNotifications;
-     private Date created;
-     private Date updated;
-     private Set feedUsers = new HashSet(0);
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private boolean hasNotifications;
+    private Date created;
+    private Date updated;
+    private Integer role;
+    private Set feedUsers = new HashSet(0);
 
+    public static final HashMap<Integer, String> ROLES;
+    
+    static {
+        ROLES = new HashMap<>();
+        ROLES.put(0, "user");
+        ROLES.put(1, "admin");
+    }
+     
     public User() {
     }
 
@@ -29,7 +39,7 @@ public class User  implements java.io.Serializable {
     public User(boolean hasNotifications) {
         this.hasNotifications = hasNotifications;
     }
-    public User(String firstName, String lastName, String email, String password, boolean hasNotifications, Date created, Date updated, Set feedUsers) {
+    public User(String firstName, String lastName, String email, String password, boolean hasNotifications, Date created, Date updated, Integer role, Set feedUsers) {
        this.firstName = firstName;
        this.lastName = lastName;
        this.email = email;
@@ -37,6 +47,7 @@ public class User  implements java.io.Serializable {
        this.hasNotifications = hasNotifications;
        this.created = created;
        this.updated = updated;
+       this.role = role;
        this.feedUsers = feedUsers;
     }
    
@@ -104,8 +115,17 @@ public class User  implements java.io.Serializable {
         this.feedUsers = feedUsers;
     }
 
+    public Integer getRole() {
+        return this.role;
+    }
+    
+    public void setRole(Integer role) {
+        this.role = role;
+    }
 
-
+    public String getRoleLabel() {
+        return User.ROLES.get(this.role);
+    }
 
 }
 

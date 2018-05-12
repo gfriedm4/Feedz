@@ -28,6 +28,9 @@
     <property name="updated" type="timestamp">
       <column length="19" name="updated"/>
     </property>
+    <property name="role" type="java.lang.Integer">
+        <column length="10" name="role" />
+    </property>
     <set fetch="select" inverse="true" lazy="false" name="feedUsers" table="feed_user">
       <key>
         <column name="user_id" not-null="true"/>

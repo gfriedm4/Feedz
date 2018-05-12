@@ -90,7 +90,7 @@ public class UserServlet extends HttpServlet {
 		}
 		
 		if(email != null && password != null && firstName != null && lastName != null) {
-			User user = UserUtilities.registerUser(email, password, firstName, lastName, notificationsVal);
+			User user = UserUtilities.registerUser(email, password, firstName, lastName, notificationsVal, 0);
 			if(user != null) {
 				request.getSession().setAttribute("user", user);
 				return "/feed.jsp";

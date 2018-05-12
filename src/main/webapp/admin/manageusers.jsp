@@ -37,8 +37,9 @@
 					<td>${user.updated}</td>
 					<td><c:out value ="fn:length(feedItem.getFeedUsers)"/></td>
 					<td>
-						<form action="" method="POST">
-							<input type="hidden" name="adminRemoveUser" value="${user.id}">
+						<form action="UserServlet" method="POST">
+							<input type="hidden" name="userId" value="${user.id}">
+							<input type="hidden" name="action" value="adminRemoveUser">
 							<input type="submit" value="Remove">
 						</form>
 					</td>

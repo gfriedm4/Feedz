@@ -15,7 +15,7 @@ $(function() {
     messages: {
       password: {
         required: "Please provide a password",
-        minlength: "Your password must be at least 5 characters long"
+        minlength: "Your password must be at least 4 characters long"
       },
       email: "Please enter a valid email address"
     },
@@ -125,13 +125,13 @@ $(function() {
   
   $("form[name='newFeed']").validate({
 	  rules: {
-		feedUrl: {
+		feedURL: {
 			required: true,
 			url: true,
 		},
 	  },
 	  messages: {
-		feedUrl: {
+		feedURL: {
 			required: "Please provide a Url",
 			url: "Please provide a valid Url"
 		},  

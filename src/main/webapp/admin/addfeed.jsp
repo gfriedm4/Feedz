@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add a Feed</title>
 <link rel="stylesheet" type="text/css" href="../styles/main.css">
-<script src="thirdparty/jquery-3.3.1.min.js"></script>
-<script src="thirdparty/jquery.validate.min.js"></script>
-<script src="javascript/main.js"></script>
+<script src="../thirdparty/jquery-3.3.1.min.js"></script>
+<script src="../thirdparty/jquery.validate.min.js"></script>
+<script src="../javascript/main.js"></script>
 </head>
 <body>
 	<%@ include file="/includes/admin/topnav.jsp" %>

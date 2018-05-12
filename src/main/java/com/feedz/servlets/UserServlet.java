@@ -1,6 +1,7 @@
 package com.feedz.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,6 +52,12 @@ public class UserServlet extends HttpServlet {
 		}
 		else if(action.equals("updatePassword")) {
 			url = handlePasswordUpdate(request, response);
+		}
+		else if(action.equals("adminLogin")) {
+			url = handleAdminLogin(request, response);
+		}
+		else if(action.equals("adminRemoveUser")) {
+			url = handleAdminRemoveUser(request, response);
 		}
 
 		request.getRequestDispatcher(url).forward(request, response);
@@ -165,6 +172,53 @@ public class UserServlet extends HttpServlet {
 		else {
 			// No user, can't update without a user
 			return "/login.jsp";
+		}
+	}
+
+	protected String handleAdminLogin(HttpServletRequest request, HttpServletResponse response) {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		if(email != null && password != null) {
+			boolean authenticated = UserUtilities.checkPassword(email, password);
+			if(authenticated == true) {
+				User user = UserController.getUserByEmail(email);
+				if(User.ROLES.get(user.getRole()).equals("admin")) {
+					request.getSession().setAttribute("user", user);
+					
+					List<User> users = UserUtilities.getAllUsers();
+					request.getSession().setAttribute("users", users);
+					return "/admin/manageusers.jsp";
+				}
+				else {
+					// Not an admin
+					return "/login.jsp";			
+				}
+			}
+			else {
+				// incorrect password
+				return "/admin/login_error.jsp";
+			}
+		}
+		else {
+			// error, no email or password
+			return "/admin/login.jsp";
+		}
+	}
+	
+	protected String handleAdminRemoveUser(HttpServletRequest request, HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		
+		if(userId != null) {
+			Integer userIdInt = Integer.parseInt(userId);
+			UserController.deleteUser(userIdInt);
+			List<User> users = UserUtilities.getAllUsers();
+			request.getSession().setAttribute("users", users);
+			return "/admin/manageusers.jsp";
+		}
+		else {
+			// Can't delete without an id
+			return "/admin/manageusers.jsp";
 		}
 	}
 }

@@ -6,6 +6,8 @@ import com.feedz.controllers.UserController;
 import com.feedz.models.User;
 import com.feedz.models.Feed;
 import com.feedz.models.FeedUser;
+
+import java.util.List;
 import java.util.Set;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -79,6 +81,10 @@ public class UserUtilities {
     		user.setPassword(BCrypt.hashpw(unhashed, BCrypt.gensalt()));
     		
     		return UserController.updateUser(user);
+    }
+    
+    public static List<User> getAllUsers() {
+    		return UserController.listUsers();
     }
     
 }

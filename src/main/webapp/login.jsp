@@ -6,12 +6,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
+	<script src="thirdparty/jquery-3.3.1.min.js"></script>
+	<script src="thirdparty/jquery.validate.min.js"></script>
+	<script src="javascript/main.js"></script>
 	<%@ include file="/includes/header.html" %>
 </head>
 	<body>
 	<div class="empty-topnav" > </div>
 	<div class="content">
-        <form action="UserServlet" method="POST">
+        <form name="login" action="UserServlet" method="POST" onsubmit="return validateLoginForm()">
             <table class="standard" width="280em">
                 <tbody>
                 	<tr>
@@ -34,7 +37,6 @@
 			            <input type="hidden" name="action" value="Login"/>
                         <td colspan="2" align='center'> <input class="green-flat-button" type="submit" value="Login" style="width:100%"/></td>
                     </tr>
-                    
                 </tbody>
             </table>
         </form>

@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit Profile</title>
 <link rel="stylesheet" type="text/css" href="styles/main.css">
+<script src="thirdparty/jquery-3.3.1.min.js"></script>
+<script src="thirdparty/jquery.validate.min.js"></script>
+<script src="javascript/main.js"></script>
 <%@ include file="/includes/header.html" %>
 </head>
 <body>
@@ -13,7 +16,7 @@
 	<div class="content">
 		<h1>Edit Profile</h1>
 		<div class="content-white">
-		<form action="UserServlet" method="post">
+		<form name = "updateProfile" action="UserServlet" method="post">
 			<h3>Update Profile</h3>
 			<table class="invisible">
 				<tr>
@@ -42,7 +45,7 @@
    	     <br>
    	     <hr>
    	     <br>
-	     <form action="UserServlet" method="post">
+	     <form name="updatePassword" action="UserServlet" method="post">
 	     	<h3>Change Password</h3>
 			<table class="invisible">
 				<tr>
@@ -51,7 +54,7 @@
 				</tr>
 				<tr>
 					<td><label class="formLabel">New Password</label></td>
-					<td><input class="form-input" type="password" name="newPassword" required"></td>
+					<td><input id="newPassword" class="form-input" type="password" name="newPassword" required"></td>
 				</tr>
 				<tr>
 					<td><label class="formLabel">Confirm New Password</label></td>

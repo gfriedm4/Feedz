@@ -6,10 +6,10 @@
 <div class="topnav">
 	<ul>
 		<li>
-			<a href="feed.jsp"><i class="fa fa-feed">  Feedz</i></a>
+			<a href="../user/feed.jsp"><i class="fa fa-feed">  Feedz</i></a>
 		</li>
 		<li>
-			<a href="profile.jsp"><i class="fa fa-user">  Profile</i></a>
+			<a href="../user/profile.jsp"><i class="fa fa-user">  Profile</i></a>
 		</li>
 		<li>
 			<a href="managefeeds.jsp"><i class="fa fa-lock">  Manage Feeds</i></a>
@@ -24,7 +24,7 @@
 			<a href="login.jsp"><font size="2">Logout</font></a>
 		</li>
 		<li style="float: right">
-			<a href="profile.jsp"><font size="2">Welcome ${user.firstName}</font></a>
+			<a href="../user/profile.jsp"><font size="2">Welcome ${user.firstName}</font></a>
 		</li>
 	</ul>
 </div>

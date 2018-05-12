@@ -18,7 +18,7 @@
                 <tbody>
                 	<tr>
                 		<td><b>Login</b></td>
-                        <td align='right'><small> New to Feedz? <a href="register.jsp">Register Here</a></small></td>
+                        <td align='right'><small> New to Feedz? <a href="../register.jsp">Register Here</a></small></td>
                     </tr>
                     <tr>
                         <td colspan="2">Email</td>

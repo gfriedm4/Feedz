@@ -1,37 +1,23 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.feedz.models.FeedItem"%>
 <%@page import="java.util.List"%>
 
 <link rel="stylesheet" type="text/css" href="styles/main.css">
 <div class="feednav">
-
-	<a href="editfeed.jsp">
-		<button class="small-green-button"><i class="fa fa-gear"></i></button>
-	</a>  
-
-
 	<a href="#about">About</a>
- 	<a href="#services">Services</a>
- 	<a href="#clients">Clients</a>
- 	<a href="#contact">Contact</a>
  	
- 	
-	<% 
-		List<FeedItem> feeds2 = (ArrayList<FeedItem>)request.getAttribute("feedItems");
- 	 	if(feeds2 != null){
-	    for(FeedItem feedItem : feeds2)
-	    {
-	%>
-	<div class="feed-item">
-	  ${feedItem.title}
-	</div>
-	<%
-			}
-		}
-		%>
+ 	<c:if test="$(not empty feedItems">		<!-- check if not null --> 
+	 	<c:forEach var="feedItem" items="${feedItems}">
+	 	<form action="FeedServlet" method="POST">
+			<input type="hidden" name="showFeed" value="${feedItem.id}">
+			<input class="gray-flat-button" type="submit" value="${feedItem.title}">
+		</form>
+		
+	 	</c:forEach>
+ 	</c:if>
  	
 	<a href="editfeed.jsp"><input class="full-green-flat-button" type="submit" value="Edit Feed" class="center"></a>  
  	
 </div>
-
-

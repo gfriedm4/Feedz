@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,7 +10,17 @@
 <link rel="stylesheet" type="text/css" href="../styles/main.css">
 </head>
 <body>
-	<%@ include file="/includes/user/topnav.jsp" %>
+	<!-- Get user-role navbar -->
+	<c:choose>
+		<c:when test="${user.role == 1}">
+			<%@ include file="/includes/admin/topnav.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="/includes/user/topnav.jsp"%>
+		</c:otherwise>
+	</c:choose>
+	
+	<!-- Page content -->
 	<div class="content">
 		<h1>My Profile</h1>
 		<div class="content-white">
@@ -37,6 +49,6 @@
 		    </div>
 		</div>
 	</div>
-	<%@ include file="/includes/user/footer.jsp" %>
+	<%@ include file="/includes/footer.jsp" %>
 </body>
 </html>

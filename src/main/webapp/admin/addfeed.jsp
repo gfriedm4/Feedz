@@ -24,6 +24,6 @@
 	     <br>
 		</div>
 	</div>
-	<%@ include file="/includes/admin/footer.jsp" %>
+	<%@ include file="/includes/footer.jsp" %>
 </body>
 </html>

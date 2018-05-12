@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.feedz.models.FeedItem"%>
 <%@page import="java.util.List"%>
@@ -12,8 +14,18 @@
 <link rel="stylesheet" type="text/css" href="../styles/main.css">
 </head>
 <body>
+		<!-- Get user-role navbar -->
+		<c:choose>
+			<c:when test="${user.role == 1}">
+				<%@ include file="/includes/admin/topnav.jsp"%>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="/includes/user/topnav.jsp"%>
+			</c:otherwise>
+		</c:choose>
+		
+		<!-- Page content -->
 		<div class="content">
-		<%@ include file="/includes/user/topnav.jsp" %>
 		<div class="main">
 		<%@ include file="/includes/user/feednav.jsp" %>	
 			<h1>Your Feedz</h1>
@@ -59,6 +71,6 @@
 				%>
 		</div>
 	</div>
-		<%@ include file="/includes/user/footer.jsp" %>
+		<%@ include file="/includes/footer.jsp" %>
 </body>
 </html>

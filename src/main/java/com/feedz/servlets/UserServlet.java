@@ -13,7 +13,7 @@ import com.feedz.controllers.UserController;
 import com.feedz.models.User;
 import com.feedz.utils.UserUtilities;
 
-@WebServlet("/UserServlet")
+@WebServlet("/user/UserServlet")
 public class UserServlet extends HttpServlet {
 
 	/**
@@ -72,16 +72,16 @@ public class UserServlet extends HttpServlet {
 			if(authenticated == true) {
 				User user = UserController.getUserByEmail(email);
 				request.getSession().setAttribute("user", user);
-				return "/feed.jsp";
+				return "/user/feed.jsp";
 			}
 			else {
 				// incorrect password
-				return "/login.jsp";
+				return "/user/login.jsp";
 			}
 		}
 		else {
 			// error, no email or password
-			return "/login.jsp";
+			return "/user/login.jsp";
 		}
 	}
 
@@ -100,16 +100,16 @@ public class UserServlet extends HttpServlet {
 			User user = UserUtilities.registerUser(email, password, firstName, lastName, notificationsVal, 0);
 			if(user != null) {
 				request.getSession().setAttribute("user", user);
-				return "/feed.jsp";
+				return "/user/feed.jsp";
 			}
 			else {
 				// something went wrong, user couldnt be created
-				return "/login_error.jsp";
+				return "/user/login_error.jsp";
 			}
 		}
 		else {
 			// Invalid input
-			return "/login_error.jsp";
+			return "/user/login_error.jsp";
 		}
 	}
 
@@ -134,16 +134,16 @@ public class UserServlet extends HttpServlet {
 			
 			if(newUser != null) {
 				request.getSession().setAttribute("user", newUser);
-				return "/profile.jsp";
+				return "/user/profile.jsp";
 			}
 			else {
 				// Couldnt be updated
-				return "/editprofile.jsp";
+				return "/user/editprofile.jsp";
 			}
 		}
 		else {
 			// invalid parameters
-			return "/editprofile.jsp";
+			return "/user/editprofile.jsp";
 		}
 	}
 
@@ -157,21 +157,21 @@ public class UserServlet extends HttpServlet {
 				
 				if(newUser != null) {
 					request.getSession().setAttribute("user", newUser);
-					return "/profile.jsp";
+					return "/user/profile.jsp";
 				}
 				else {
 					// Something went wrong
-					return "/login.jsp";
+					return "/user/login.jsp";
 				}
 			}
 			else {
 				// invalid parameters
-				return "/editprofile.jsp";
+				return "/user/editprofile.jsp";
 			}
 		}
 		else {
 			// No user, can't update without a user
-			return "/login.jsp";
+			return "/user/login.jsp";
 		}
 	}
 
@@ -192,7 +192,7 @@ public class UserServlet extends HttpServlet {
 				}
 				else {
 					// Not an admin
-					return "/login.jsp";			
+					return "/user/login.jsp";			
 				}
 			}
 			else {

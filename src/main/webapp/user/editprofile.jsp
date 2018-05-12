@@ -11,7 +11,6 @@
 <script src="thirdparty/jquery-3.3.1.min.js"></script>
 <script src="thirdparty/jquery.validate.min.js"></script>
 <script src="javascript/main.js"></script>
-<%@ include file="/includes/header.html" %>
 </head>
 <body>
 	<!-- Get user-role navbar -->

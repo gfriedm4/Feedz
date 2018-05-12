@@ -23,7 +23,34 @@
 	<!-- Page content -->
 	<div class="content">
 		<h1>Subscribe to a Feed</h1>
-		
+		<table class="standard">
+				<tr>
+					<th>Image</th>
+					<th>Title</th>
+					<th>URL</th>
+					<th>Description</th>
+					<th>Remove?</th>
+				</tr>
+				
+				<c:forEach var="feedItem" items="${feedItems}">
+				<tr>
+					<td>${feedItem.image}</td>
+					<td>${feedItem.title}</td>
+					<td>${feedItem.url}</td>
+					<td>${feedItem.description}</td>
+					<td>
+						<form action="" method="POST">
+							<input type="hidden" name="addFeed" value="${feedItem.id}">
+							<input type="submit" value="Add">
+						</form>
+				</tr>
+				</c:forEach>
+		</table>
+
+		<br>
+		<div class="center">
+			<a href="feed.jsp"><input class="gray-flat-button" type="submit" value="Cancel"></a>   		
+		</div>
 	</div>
 	<%@ include file="/includes/footer.jsp" %>
 </body>

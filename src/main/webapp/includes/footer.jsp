@@ -9,7 +9,7 @@
 <nav>
 	<!-- Get footer path based whether user logged in -->
 	<c:choose>
-		<c:when test="${empty user}">
+		<c:when test="${user == null}">
 			  <a href="about.jsp">About</a> |
 			  <a href="contact.jsp">Contact Us</a> |
 			  <a href="faq.jsp">FAQ</a>

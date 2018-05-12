@@ -23,51 +23,35 @@
 	<!-- Page content -->
 	<div class="content">
 		<h1>Edit My Feed</h1>
-		<table>
-			<tr>
-				<th></th>
-				<th>Feed Name</th>
-				<th>Description</th>
-				<th>URL</th>
-				<th></th>
-			</tr>
-			<c:forEach var="feed" items="${cart.items}">
+		<table class="standard">
 				<tr>
-					<td>
-					</td>
-					<td>
-						<form action="" method="post">
-							<input type="hidden" name="productCode"
-								value="<c:out value='${item.product.code}'/>"> <input
-								type=text name="quantity"
-								value="<c:out value='${item.quantity}'/>" id="quantity">
-							<input type="submit" value="Update">
-						</form>
-					</td>
-					<td><c:out value='${item.product.description}' /></td>
-					<td>${item.product.priceCurrencyFormat}</td>
-					<td>${item.totalCurrencyFormat}</td>
-					<td>
-						<form action="" method="post">
-							<input type="hidden" name="productCode"
-								value="<c:out value='${item.product.code}'/>"> <input
-								type="hidden" name="quantity" value="0"> <input
-								type="submit" value="Remove Item">
-						</form>
-					</td>
+					<th>Image</th>
+					<th>Title</th>
+					<th>URL</th>
+					<th>Description</th>
+					<th>Remove?</th>
 				</tr>
-			</c:forEach>
+				
+				<c:forEach var="feedItem" items="${feedItems}">
+				<tr>
+					<td>${feedItem.image}</td>
+					<td>${feedItem.title}</td>
+					<td>${feedItem.url}</td>
+					<td>${feedItem.description}</td>
+					<td>
+						<form action="" method="POST">
+							<input type="hidden" name="removeFeed" value="${feedItem.id}">
+							<input type="submit" value="Remove">
+						</form>
+				</tr>
+				</c:forEach>
 		</table>
 
-		<form action="" method="post">
-			<input type="hidden" name="action" value="updateFeed">
-			<input class="green-flat-button" type="submit" value="Update" class="margin_left">
-		</form>
-
-		<form action="" method="post">
-			<input type="hidden" name="action" value="cancel">
-			<a href="profile.jsp"><input class="gray-flat-button" type="submit" value="Cancel" class="margin_left"></a>   		
-		</form>
+		<br>
+		<div class="center">
+			<a href="subscribe.jsp"><input class="green-flat-button" type="submit" value="Add New Feed"></a>   		
+			<a href="feed.jsp"><input class="gray-flat-button" type="submit" value="Cancel"></a>   		
+		</div>
 	</div>
 	<%@ include file="/includes/footer.jsp" %>
 </body>

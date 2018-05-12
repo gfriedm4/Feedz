@@ -46,6 +46,12 @@ public class UserServlet extends HttpServlet {
 		else if(action.equals("register")) {
 			url = handleUserRegistration(request, response);
 		}
+		else if(action.equals("updateProfile")) {
+			url = handleProfileUpdate(request, response);
+		}
+		else if(action.equals("updatePassword")) {
+			url = handlePasswordUpdate(request, response);
+		}
 
 		request.getRequestDispatcher(url).forward(request, response);
 	}
@@ -99,4 +105,67 @@ public class UserServlet extends HttpServlet {
 			return "/register.jsp";
 		}
 	}
+
+	protected String handleProfileUpdate(HttpServletRequest request, HttpServletResponse response) {
+		String email = request.getParameter("email");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String notifications = request.getParameter("hasNotifications");
+		boolean notificationsVal = false;
+		if(notifications != null) {
+			notificationsVal = true;
+		}
+		
+		if(email != null && firstName != null && lastName != null) {
+			User newUser = new User();
+			newUser.setEmail(email);
+			newUser.setFirstName(firstName);
+			newUser.setLastName(lastName);
+			newUser.setHasNotifications(notificationsVal);
+			
+			newUser = UserUtilities.updateUser(newUser);
+			
+			if(newUser != null) {
+				request.getSession().setAttribute("user", newUser);
+				return "/profile.jsp";
+			}
+			else {
+				// Couldnt be updated
+				return "/editprofile.jsp";
+			}
+		}
+		else {
+			// invalid parameters
+			return "/editprofile.jsp";
+		}
+	}
+
+	protected String handlePasswordUpdate(HttpServletRequest request, HttpServletResponse response) {
+		User user = (User)request.getSession().getAttribute("user");
+		if(user != null) {
+			String password = request.getParameter("confirmNewPassword");
+			if(password != null) {
+				user.setPassword(password);
+				User newUser = UserUtilities.updateUser(user);
+				
+				if(newUser != null) {
+					request.getSession().setAttribute("user", newUser);
+					return "/profile.jsp";
+				}
+				else {
+					// Something went wrong
+					return "/login.jsp";
+				}
+			}
+			else {
+				// invalid parameters
+				return "/editprofile.jsp";
+			}
+		}
+		else {
+			// No user, can't update without a user
+			return "/login.jsp";
+		}
+	}
 }
+

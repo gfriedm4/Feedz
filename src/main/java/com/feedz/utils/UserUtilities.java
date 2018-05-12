@@ -73,4 +73,11 @@ public class UserUtilities {
         }
     }
     
+    public static User updateUser(User user) {
+    		String unhashed = user.getPassword();
+    		user.setPassword(BCrypt.hashpw(unhashed, BCrypt.gensalt()));
+    		
+    		return UserController.updateUser(user);
+    }
+    
 }

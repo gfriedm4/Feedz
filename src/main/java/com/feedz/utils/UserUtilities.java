@@ -27,13 +27,15 @@ public class UserUtilities {
         return BCrypt.checkpw(password, user.getPassword());
     }
     
-    public static User registerUser(String email, String password, String firstName, String lastName) {
+    public static User registerUser(String email, String password, String firstName, String lastName,
+    		boolean hasNotifications) {
         User newUser = new User();
         
         newUser.setEmail(email);
         newUser.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
+        newUser.setHasNotifications(hasNotifications);
        
         return UserController.createUser(newUser);
     }

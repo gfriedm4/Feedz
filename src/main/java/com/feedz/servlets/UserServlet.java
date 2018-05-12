@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.feedz.controllers.UserController;
 import com.feedz.models.User;
+import com.feedz.utils.UserUtilities;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
@@ -54,25 +55,19 @@ public class UserServlet extends HttpServlet {
 		String password = request.getParameter("password");
 
 		if(email != null && password != null) {
-			User user = UserController.getUserByEmail(email);
-			if(user != null) {
-				if(user.getPassword().equals(password)) {
-					// Successfully logged in
-					request.getSession().setAttribute("user", user);
-					return "/feed.jsp";
-				}
-				else {
-					// incorrect password
-					return "/login.jsp";
-				}
+			boolean authenticated = UserUtilities.checkPassword(email, password);
+			if(authenticated == true) {
+				User user = UserController.getUserByEmail(email);
+				request.getSession().setAttribute("user", user);
+				return "/feed.jsp";
 			}
 			else {
-				// No registered user with that email
-				return "/register.jsp";
+				// incorrect password
+				return "/login.jsp";
 			}
 		}
 		else {
-			// error, no email
+			// error, no email or password
 			return "/login.jsp";
 		}
 	}
@@ -88,24 +83,15 @@ public class UserServlet extends HttpServlet {
 			notificationsVal = true;
 		}
 		
-		if(email != null) {
-			User user = UserController.getUserByEmail(email);
-			if(user == null) {
-				User newUser = new User();
-				newUser.setEmail(email);
-				newUser.setPassword(password);
-				newUser.setFirstName(firstName);
-				newUser.setLastName(lastName);
-				newUser.setHasNotifications(notificationsVal);
-
-				UserController.createUser(newUser);
-				
-				request.getSession().setAttribute("user", newUser);
+		if(email != null && password != null && firstName != null && lastName != null) {
+			User user = UserUtilities.registerUser(email, password, firstName, lastName, notificationsVal);
+			if(user != null) {
+				request.getSession().setAttribute("user", user);
 				return "/feed.jsp";
 			}
 			else {
-				request.getSession().setAttribute("user", user);
-				return "/feed.jsp";
+				// something went wrong, user couldnt be created
+				return "/register.jsp";
 			}
 		}
 		else {

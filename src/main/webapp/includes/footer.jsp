@@ -1,5 +1,3 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page import="java.util.GregorianCalendar, java.util.Calendar"%>
 <%
 		GregorianCalendar currentDate = new GregorianCalendar();
@@ -8,20 +6,9 @@
 <div class="footer">
 <nav>
 	<!-- Get footer path based whether user logged in -->
-	<c:choose>
-		<c:when test="${user == null}">
-			  <a href="about.jsp">About</a> |
-			  <a href="contact.jsp">Contact Us</a> |
-			  <a href="faq.jsp">FAQ</a>
-		</c:when>
-		<c:otherwise>
-			  <a href="../about.jsp">About</a> |
-			  <a href="../contact.jsp">Contact Us</a> |
-			  <a href="../faq.jsp">FAQ</a>
-		</c:otherwise>
-	</c:choose>
-
-
+	<a href="${pageContext.request.contextPath}/about.jsp">About</a> |
+	<a href="${pageContext.request.contextPath}/contact.jsp">Contact Us</a> |
+	<a href="${pageContext.request.contextPath}/faq.jsp">FAQ</a>
 </nav>
 <p>
 	&copy; Copyright <%=currentYear%>

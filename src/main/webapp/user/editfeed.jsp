@@ -21,7 +21,7 @@
 <body>
 	<!-- Get user-role navbar -->
 	<c:choose>
-		<c:when test="${user.role == 1}">
+		<c:when test="${sessionScope.user.role == 1}">
 			<%@ include file="/includes/admin/topnav.jsp"%>
 		</c:when>
 		<c:otherwise>

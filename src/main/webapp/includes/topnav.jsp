@@ -10,10 +10,10 @@
 		</li>
 
 		<li style="float: right">
-			<a href="user/login.jsp">Login</a>
+			<a href="${pageContext.request.contextPath}/user/login.jsp">Login</a>
 		</li>
 		<li style="float: right">
-			<a href="register.jsp">Register</a>
+			<a href="${pageContext.request.contextPath}/user/register.jsp">Register</a>
 		</li>
 	</ul>
 </div>

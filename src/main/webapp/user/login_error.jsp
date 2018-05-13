@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="../styles/main.css">
+	<link rel="stylesheet" type="text/css" href="styles/main.css">
 	<%@ include file="/includes/header.html" %>
 </head>
 	<body>
@@ -19,7 +19,7 @@
                 <tbody>
                     <tr>
                 		<td><b>Login</b></td>
-                        <td align='right'><small> New to Feedz? <a href="../register.jsp">Register Here</a></small></td>
+                        <td align='right'><small> New to Feedz? <a href="register.jsp">Register Here</a></small></td>
                     </tr>
                     <tr>
                         <td colspan="2">Email</td>

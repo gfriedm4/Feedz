@@ -1,3 +1,8 @@
+<%@page import="com.feedz.controllers.FeedController"%>
+<%@page import="com.feedz.models.Feed"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -13,7 +18,7 @@
 	<div class="content">
 		<h1>Manage Available Feeds</h1>
 		<div class="content-white">
-			<table class="standard">
+			<table class="long">
 				<tr>
 					<th>Feed ID</th>
 					<th>Title</th>
@@ -26,23 +31,33 @@
 					<th>Remove?</th>
 				</tr>
 				
-				<c:forEach var="feedItem" items="${feedItems}">
+				<% List<Feed> feedList = FeedController.listFeeds(); %>
+				
+				<% for(Feed f : feedList) {%>
 				<tr>
-					<td>${feedItem.id}</td>
-					<td>${feedItem.title}</td>
-					<td>${feedItem.url}</td>
-					<td>${feedItem.description}</td>
-					<td>${feedItem.image}</td>
-					<td>${feedItem.created}</td>
-					<td>${feedItem.updated}</td>
-					<td><c:out value ="fn:length(feedItem.getFeedUsers)"/></td>
+					<td><%out.print(f.getId());%></td>
+					<td><%out.print(f.getTitle());%></td>
+					<td><%out.print(f.getUrl());%></td>
+					<td><%out.print(f.getDescription());%></td>
+					<td><%if (f.getImage() != null) {%>
+						<IMG SRC="<%out.print(f.getImage());%>"> 
+						<% } else { %>
+						none
+						<% }%>
+					</td>
+					<td><%out.print(f.getCreated());%></td>
+					<td><%out.print(f.getUpdated());%></td>
+					<td><%out.print(f.getFeedUsers().size());%></td>
 					<td>
 						<form action="" method="POST">
-							<input type="hidden" name="adminRemoveFeed" value="${feedItem.id}">
+							<input type="hidden" name="feedId" value="<%f.getId();%>">
+							<input type="hidden" name="action" value="adminRemoveUser">
 							<input type="submit" value="Remove">
 						</form>
+					</td>
 				</tr>
-				</c:forEach>
+				<% }%>
+				
 				</table>
 				<br>
 			<div class="center">

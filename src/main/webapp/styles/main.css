@@ -40,6 +40,27 @@ span {
 	margin-top: 4px;
 }
 
+/* admin tables with a lot of info */
+table.long {
+	display: block;
+	overflow-x: auto;
+	white-space: nowrap;
+	border: 1px solid #CCC;
+    border-collapse: collapse;
+    background-color: white;
+    margin:auto;	/* centered */
+}
+table.long  th {
+	font-size: 0.9em; 
+    border: none;
+    padding: 5px;
+}
+table.long  td {
+	font-size: 0.7em;
+    border: none;
+    padding: 5px;
+}
+
 table.standard {
     border: 1px solid #CCC;
     border-collapse: collapse;

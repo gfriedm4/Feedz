@@ -179,11 +179,13 @@ public class UserController {
     public static List<User> listUsers() {
         Session session = HibernateConnector.getSessionFactory().openSession();
         
-        try {
+        try {            
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<User> query = builder.createQuery(User.class);
-            
-            List<User> users = session.createQuery(query).getResultList();
+            CriteriaQuery<User> cq = builder.createQuery(User.class);
+            Root<User> root = cq.from(User.class);
+            cq.select(root);
+            Query<User> q = session.createQuery(cq);
+            List<User> users = q.getResultList();
             
             session.close();
             return users;

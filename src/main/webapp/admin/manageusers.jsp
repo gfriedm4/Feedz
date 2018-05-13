@@ -1,3 +1,8 @@
+<%@page import="com.feedz.utils.UserUtilities"%>
+<%@page import="com.feedz.models.User"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -13,7 +18,7 @@
 	<div class="content">
 		<h1>Manage Users</h1>
 		<div class="content-white">
-			<table class="standard">
+			<table class="long">
 				<tr>
 					<th>User ID</th>
 					<th>Last Name</th>
@@ -22,29 +27,32 @@
 					<th>Notifications</th>
 					<th>Date Created</th>
 					<th>Date Modified</th>
+					<th>Role</th>
 					<th>Number of Feeds</th>
 					<th>Remove?</th>
 				</tr>
 				
-				<c:forEach var="userItem" items="${users}">
+				<% List<User> userList = UserUtilities.getAllUsers(); %>
+				<% for(User u : userList) {%>
 				<tr>
-					<td>${user.id}</td>
-					<td>${user.lastName}</td>
-					<td>${user.firstName}</td>
-					<td>${user.email}</td>
-					<td>${user.hasNotifications}</td>
-					<td>${user.created}</td>
-					<td>${user.updated}</td>
-					<td><c:out value ="fn:length(feedItem.getFeedUsers)"/></td>
+					<td><%out.print(u.getId());%></td>
+					<td><%out.print(u.getLastName());%></td>
+					<td><%out.print(u.getFirstName());%></td>
+					<td><%out.print(u.getEmail());%></td>
+					<td><%out.print(u.isHasNotifications());%></td>
+					<td><%out.print(u.getCreated());%></td>
+					<td><%out.print(u.getUpdated());%></td>
+					<td><%out.print(u.getRole());%></td>
+					<td><%out.print(u.getFeedUsers().size());%></td>
 					<td>
 						<form action="UserServlet" method="POST">
-							<input type="hidden" name="userId" value="${user.id}">
+							<input type="hidden" name="userId" value="<%u.getId();%>">
 							<input type="hidden" name="action" value="adminRemoveUser">
 							<input type="submit" value="Remove">
 						</form>
 					</td>
 				</tr>
-				</c:forEach>
+				<% }%>
 				</table>
 				<br>
 		</div>

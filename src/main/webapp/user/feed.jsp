@@ -32,7 +32,7 @@
 		<%@ include file="/includes/user/feednav.jsp" %>	
 			<h1>Your Feedz</h1>
 			<% 
-                            List<FeedItem> feeds;
+                            List<FeedItem> feeds = null;
                             if (request.getAttribute("feedItems") != null) {
                                 feeds = (List<FeedItem>) request.getAttribute("feedItems");
                             }
@@ -41,15 +41,18 @@
                                 feeds = FeedUtilities.getUserFeed(user.getId());
                             }
                             else {
-                                feeds = new ArrayList<>();
+                                feeds = new ArrayList();
                             }
                             
-                            if(feeds != null){
+                            if(!feeds.isEmpty()){
                                 for(FeedItem feedItem : feeds)
                                 {
 			%>
 			<div class="feed-item">
 			<% out.print("<h2>" + feedItem.getTitle() + "</h2>");
+                            if (feedItem.getCreated() != null) {
+                                out.print("<span>" + feedItem.getCreated().toString() + "</span>");
+                            }
 				if (!feedItem.getDescription().isEmpty()) { %>
 			<div class="feed-description">
 				<% out.print(feedItem.getDescription());%>

@@ -23,6 +23,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import com.feedz.models.User;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -85,9 +86,26 @@ public class FeedUtilities {
             item.setDescription(syndEntry.getDescription().getValue());
             item.setLink(syndEntry.getLink());
             item.setTitle(syndEntry.getTitle());
-
+            item.setCreated(syndEntry.getPublishedDate());
             items.add(item);
         }
+        
+        items.sort(new Comparator<FeedItem>() {
+            @Override
+            public int compare(FeedItem a, FeedItem b) {
+                if (a.getCreated() != null && b.getCreated() != null) {
+                    return b.getCreated().compareTo(a.getCreated());
+                }
+                else if(a.getCreated() == null) {
+                    return -1;
+                }
+                else if(b.getCreated() == null) {
+                    return 1;
+                }
+                return 0;
+            }
+        });
+        
         return items;
     }
     

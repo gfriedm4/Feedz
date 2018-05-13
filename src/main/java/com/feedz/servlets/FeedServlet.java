@@ -52,6 +52,16 @@ public class FeedServlet extends HttpServlet {
             return;
         }
         
+        String removeFeed = request.getParameter("removeFeed");
+        
+        if (removeFeed != null) {
+            int feedId = Integer.parseInt(request.getParameter("feedId"));
+            int userId = ((User)request.getSession().getAttribute("user")).getId();
+            UserUtilities.removeFeedFromUser(userId, feedId);
+            request.getRequestDispatcher("/user/editfeed.jsp").forward(request, response);
+            return;
+        }
+        
         String action = request.getParameter("action");
         // If we have an id in the URL, only get that feed
         if (action != null && action.equals("showFeed")) {
@@ -73,6 +83,7 @@ public class FeedServlet extends HttpServlet {
                     item.setDescription(syndEntry.getDescription().getValue());
                     item.setLink(syndEntry.getLink());
                     item.setTitle(syndEntry.getTitle());
+                    item.setCreated(syndEntry.getPublishedDate());
 
                     items.add(item);
                 }

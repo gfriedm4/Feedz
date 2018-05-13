@@ -1,3 +1,5 @@
+<%@page import="com.feedz.utils.FeedUtilities"%>
+<%@page import="com.feedz.models.User"%>
 <%@page import="com.feedz.models.FeedItem"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -16,15 +18,28 @@
 		<%@ include file="/includes/topnav.jsp" %>
 		<div class="main">
 		<%@ include file="/includes/feednav.jsp" %>	
-			<h1>Your Feedz</h1>
+			<h1>Feedz</h1>
 			<% 
-				List<FeedItem> feeds = (ArrayList<FeedItem>) request.getAttribute("feedItems");
-		 	 	if(feeds != null){
+                            List<FeedItem> feeds = null;
+                            if (request.getAttribute("feedItems") != null) {
+                                feeds = (List<FeedItem>) request.getAttribute("feedItems");
+                            }
+                            else if (request.getSession().getAttribute("user") != null){
+                                User user = (User) request.getSession().getAttribute("user");
+                                feeds = FeedUtilities.getUserFeed(user.getId());
+                            }
+                            else {
+                                feeds = new ArrayList();
+                            }
+		 	 	if(!feeds.isEmpty()){
 			    for(FeedItem feedItem : feeds)
 			    {
 			%>
 			<div class="feed-item">
 			<% out.print("<h2>" + feedItem.getTitle() + "</h2>");
+                         if (feedItem.getCreated() != null) {
+                                out.print("<span>" + feedItem.getCreated().toString() + "</span>");
+                            }
 				if (!feedItem.getDescription().isEmpty()) { %>
 			<div class="feed-description">
 				<% out.print(feedItem.getDescription());%>

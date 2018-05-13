@@ -60,8 +60,9 @@
 					<td><%out.print(f.getUrl());%></td>
 					<td><%out.print(f.getDescription());%></td>
 					<td>
-						<form action="" method="POST">
-							<input type="hidden" name="removeFeed" value="${feedItem.id}">
+						<form action="FeedServlet" method="POST">
+                                                    <input type="hidden" name="feedId" value="<%= f.getId() %>">
+							<input type="hidden" name="removeFeed">
 							<input type="submit" value="Remove">
 						</form>
 				</tr>

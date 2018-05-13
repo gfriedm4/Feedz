@@ -46,7 +46,7 @@
 					<td><%out.print(u.getFeedUsers().size());%></td>
 					<td>
 						<form action="UserServlet" method="POST">
-							<input type="hidden" name="userId" value="<%u.getId();%>">
+							<input type="hidden" name="userId" value="<%out.print(u.getId());%>">
 							<input type="hidden" name="action" value="adminRemoveUser">
 							<input type="submit" value="Remove">
 						</form>

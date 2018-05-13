@@ -28,6 +28,8 @@
 	<!-- Page content -->
 	<div class="content">
 		<h1>Subscribe to a Feed</h1>
+		<a href="editfeed.jsp"><input class="gray-flat-button" type="submit" value="Back to Edit Feed"></a> 
+		<br> <br>
 		<table class="standard">
 				<tr>
 					<th></th>
@@ -50,7 +52,7 @@
 					<td><%out.print(f.getDescription());%></td>
 					<td>
 						<form action="" method="POST">
-							<input type="hidden" name="feedId" value="<%f.getId();%>">
+							<input type="hidden" name="feedId" value="<%out.print(f.getId());%>>">
 							<input type="hidden" name="action" value="subscribeToFeed">
 							<input type="submit" value="Subscribe">
 						</form>

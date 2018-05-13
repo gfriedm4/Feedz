@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.feedz.controllers.FeedUserController;
 import com.feedz.controllers.UserController;
 import com.feedz.models.User;
 import com.feedz.utils.UserUtilities;
 
-@WebServlet("/user/UserServlet")
+@WebServlet({"/user/UserServlet", "/admin/UserServlet"})
 public class UserServlet extends HttpServlet {
 
 	/**
@@ -58,6 +59,9 @@ public class UserServlet extends HttpServlet {
 		}
 		else if(action.equals("adminRemoveUser")) {
 			url = handleAdminRemoveUser(request, response);
+		}
+		else if(action.equals("subscribeToFeed")) {
+			url = handleSubscribeToFeed(request, response);
 		}
 
 		request.getRequestDispatcher(url).forward(request, response);
@@ -221,5 +225,26 @@ public class UserServlet extends HttpServlet {
 			return "/admin/manageusers.jsp";
 		}
 	}
+	
+	 protected String handleSubscribeToFeed(HttpServletRequest request, HttpServletResponse response) {
+	    	User user = (User)request.getSession().getAttribute("user");
+			String feedId = request.getParameter("feedId");
+	    	
+			if(user != null && feedId != null) {
+				Integer userIdInt = user.getId();
+				Integer feedIdInt = Integer.parseInt(feedId);
+				
+				UserUtilities.addFeedToUser(userIdInt, feedIdInt);
+				
+				User updatedUser = UserController.getUserById(userIdInt);
+				request.getSession().setAttribute("user", updatedUser);
+			
+				return "/user/subscribe.jsp";
+			}
+			else {
+				// invalid parameters
+				return "/user/subscribe.jsp";
+			}
+		}
 }
 

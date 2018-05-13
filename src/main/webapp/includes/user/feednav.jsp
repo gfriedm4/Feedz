@@ -11,21 +11,21 @@
 <link rel="stylesheet" type="text/css" href="styles/main.css">
 <div class="feednav">
 			<table>	
-				<% User u = (User) request.getAttribute("user"); 
+				<% User u = (User) request.getSession().getAttribute("user"); 
 				if(u != null && u.getFeedUsers() != null){
 				Set<FeedUser> feedUsers = (Set<FeedUser>) u.getFeedUsers();
 				for(FeedUser feedUser : feedUsers) {
 					Feed f = feedUser.getFeed();%>
 				<tr>
 					<td><%if (f.getImage() != null) {%>
-						<IMG src="<%out.print(f.getImage());%>" height="42" width="42"> 
+						<IMG src="<%= f.getImage() %>" height="42" width="42"> 
 						<% } %>
 					</td>
 					<td>
 						<form action="FeedServlet" method="POST">
-							<input type="hidden" name="feedId" value="<%f.getId();%>">
+							<input type="hidden" name="feedId" value="<%= f.getId() %>">
 							<input type="hidden" name="action" value="showFeed">
-							<input class="feednav-btn" type="submit" value="<%out.print(f.getTitle());%>">
+							<input class="feednav-btn" type="submit" value="<%= f.getTitle() %>">
 						</form>
 					</td>
 				</tr>

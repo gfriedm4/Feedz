@@ -3,6 +3,7 @@ package com.feedz.utils;
 import com.feedz.controllers.FeedController;
 import com.feedz.controllers.UserController;
 import com.feedz.models.Feed;
+import com.feedz.models.FeedItem;
 import com.feedz.models.FeedUser;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
@@ -23,6 +24,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import com.feedz.models.User;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
 import org.hibernate.HibernateException;
 
@@ -62,6 +64,31 @@ public class FeedUtilities {
             return null;
         }
         return null;
+    }
+    
+    public static List<FeedItem> getUserFeed(Integer userId) {
+        User user = UserController.getUserById(userId);
+        ArrayList<Integer> feeds = new ArrayList<>();
+        for (FeedUser feedUser : user.getFeedUsers()) {
+            feeds.add(feedUser.getFeed().getId());
+        }
+        List<FeedItem> items = new ArrayList<>();
+        SyndFeed feed = getSyndFeed(feeds);
+        // Loop throug feed and create FeedItems, add to request attribute
+        for (Iterator<SyndEntry> entryIter = feed.getEntries().iterator(); entryIter.hasNext();) {
+            SyndEntry syndEntry = (SyndEntry) entryIter.next();
+
+            FeedItem item = new FeedItem();
+            item.setAuthor(syndEntry.getAuthor());
+            item.setCategory(syndEntry.getCategories().toString());
+            item.setComments(syndEntry.getComments());
+            item.setDescription(syndEntry.getDescription().getValue());
+            item.setLink(syndEntry.getLink());
+            item.setTitle(syndEntry.getTitle());
+
+            items.add(item);
+        }
+        return items;
     }
     
     public static SyndFeed getSyndFeed(Integer id) {

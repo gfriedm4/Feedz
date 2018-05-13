@@ -1,3 +1,4 @@
+<%@page import="com.feedz.utils.FeedUtilities"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page import="com.feedz.models.Feed"%>
@@ -31,10 +32,21 @@
 		<%@ include file="/includes/user/feednav.jsp" %>	
 			<h1>Your Feedz</h1>
 			<% 
-				List<FeedItem> feeds = (ArrayList<FeedItem>) request.getAttribute("feedItems");
-		 	 	if(feeds != null){
-			    for(FeedItem feedItem : feeds)
-			    {
+                            List<FeedItem> feeds;
+                            if (request.getAttribute("feedItems") != null) {
+                                feeds = (List<FeedItem>) request.getAttribute("feedItems");
+                            }
+                            else if (request.getSession().getAttribute("user") != null){
+                                User user = (User) request.getSession().getAttribute("user");
+                                feeds = FeedUtilities.getUserFeed(user.getId());
+                            }
+                            else {
+                                feeds = new ArrayList<>();
+                            }
+                            
+                            if(feeds != null){
+                                for(FeedItem feedItem : feeds)
+                                {
 			%>
 			<div class="feed-item">
 			<% out.print("<h2>" + feedItem.getTitle() + "</h2>");

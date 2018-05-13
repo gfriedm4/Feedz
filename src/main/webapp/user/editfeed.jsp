@@ -46,14 +46,14 @@
 					<th>Remove?</th>
 				</tr>
 				
-				<% User u = (User) request.getAttribute("user"); 
+				<% User u = (User) request.getSession().getAttribute("user"); 
 				if(u != null && u.getFeedUsers() != null){
-				Set<FeedUser> feedUsers = (Set<FeedUser>) u.getFeedUsers();
-				for(FeedUser feedUser : feedUsers) {
-					Feed f = feedUser.getFeed();%>
+                                    Set<FeedUser> feedUsers = (Set<FeedUser>) u.getFeedUsers();
+                                    for(FeedUser feedUser : feedUsers) {
+                                            Feed f = feedUser.getFeed();%>
 				<tr>
 					<td> <%if (f.getImage() != null) {%>
-						<IMG src="<%out.print(f.getImage());%>" height="42" width="42"> 
+						<img src="<%out.print(f.getImage());%>" height="42" width="42"> 
 						<% } %>
 					</td>
 					<td><%out.print(f.getTitle());%></td>

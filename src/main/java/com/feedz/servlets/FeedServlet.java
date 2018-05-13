@@ -48,17 +48,43 @@ public class FeedServlet extends HttpServlet {
             int feedId = Integer.parseInt(request.getParameter("feedId"));
             int userId = ((User)request.getSession().getAttribute("user")).getId();
             UserUtilities.addFeedToUser(userId, feedId);
-            request.getRequestDispatcher("/user/subscribe.jsp").forward(request, response);
+            request.getRequestDispatcher("/user/editfeed.jsp").forward(request, response);
             return;
         }
         
         String action = request.getParameter("action");
-        ArrayList<Integer> ids = new ArrayList<>();
         // If we have an id in the URL, only get that feed
         if (action != null && action.equals("showFeed")) {
             try {
                 String feedId = request.getParameter("feedId");
-                ids.add(Integer.parseInt(feedId));
+                SyndFeed feed = FeedUtilities.getSyndFeed(Integer.parseInt(feedId));
+        
+                List<FeedItem> items = new ArrayList<>();
+                response.setContentType("text/html;charset=UTF-8");
+
+                // Loop throug feed and create FeedItems, add to request attribute
+                for (Iterator<SyndEntry> entryIter = feed.getEntries().iterator(); entryIter.hasNext();) {
+                    SyndEntry syndEntry = (SyndEntry) entryIter.next();
+
+                    FeedItem item = new FeedItem();
+                    item.setAuthor(syndEntry.getAuthor());
+                    item.setCategory(syndEntry.getCategories().toString());
+                    item.setComments(syndEntry.getComments());
+                    item.setDescription(syndEntry.getDescription().getValue());
+                    item.setLink(syndEntry.getLink());
+                    item.setTitle(syndEntry.getTitle());
+
+                    items.add(item);
+                }
+
+                request.setAttribute("feedItems", items);
+                if (request.getRequestURI().contains("user")) {
+                    request.getRequestDispatcher("/user/feed.jsp").forward(request, response);
+                }
+                else {
+                    request.getRequestDispatcher("/feed.jsp").forward(request, response);
+                }
+                return;
             } catch (NumberFormatException e) {
             
                 String test = "";
@@ -66,38 +92,9 @@ public class FeedServlet extends HttpServlet {
         }
         
         // If there is no valid parameter, get all of the logged in user's feeds
-        if (ids.isEmpty()) {
-            User user = (User) request.getSession().getAttribute("user");
-            if (user != null) {
-                Set<FeedUser> feedUsers = user.getFeedUsers();
-                for (FeedUser feedUser : feedUsers) {
-                    ids.add(feedUser.getFeed().getId());
-                }
-            }
-        }
-        
-        SyndFeed feed = FeedUtilities.getSyndFeed(ids);
-        
-        List<FeedItem> items = new ArrayList<>();
-        response.setContentType("text/html;charset=UTF-8");
-        
-        // Loop throug feed and create FeedItems, add to request attribute
-        for (Iterator<SyndEntry> entryIter = feed.getEntries().iterator(); entryIter.hasNext();) {
-            SyndEntry syndEntry = (SyndEntry) entryIter.next();
-
-            FeedItem item = new FeedItem();
-            item.setAuthor(syndEntry.getAuthor());
-            item.setCategory(syndEntry.getCategories().toString());
-            item.setComments(syndEntry.getComments());
-            item.setDescription(syndEntry.getDescription().getValue());
-            item.setLink(syndEntry.getLink());
-            item.setTitle(syndEntry.getTitle());
-
-            items.add(item);
-        }
-        
-        request.setAttribute("feedItems", items);
-        request.getRequestDispatcher("/feed.jsp").forward(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+        request.setAttribute("feedItems", FeedUtilities.getUserFeed(user.getId()));
+        request.getRequestDispatcher("/feed.jsp").forward(request, response);        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

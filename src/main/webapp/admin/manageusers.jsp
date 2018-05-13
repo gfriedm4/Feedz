@@ -29,7 +29,7 @@
 					<th>Date Modified</th>
 					<th>Role</th>
 					<th>Number of Feeds</th>
-					<th>Remove?</th>
+					<th></th>
 				</tr>
 				
 				<% List<User> userList = UserUtilities.getAllUsers(); %>

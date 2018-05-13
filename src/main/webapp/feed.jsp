@@ -51,9 +51,8 @@
 				}
 				else{
 				%>
-			<div>Hm... looks like you don't have any feeds yet. Click  
-			<a href="editfeed.jsp">Edit Feed</a>
-			to get started!</div>
+			
+				<div>Hm... looks like there aren't any feeds yet.</div>
 			<%
 				}
 				%>

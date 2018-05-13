@@ -1,7 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.feedz.models.Feed"%>
 <%@page import="com.feedz.models.FeedItem"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

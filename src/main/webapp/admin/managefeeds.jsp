@@ -28,7 +28,7 @@
 					<th>Date Created</th>
 					<th>Date Modified</th>
 					<th>Total Feed-Users</th>
-					<th>Remove?</th>
+					<th></th>
 				</tr>
 				
 				<% List<Feed> feedList = FeedController.listFeeds(); %>

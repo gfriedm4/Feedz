@@ -1,3 +1,8 @@
+<%@page import="com.feedz.controllers.FeedController"%>
+<%@page import="com.feedz.models.Feed"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -25,31 +30,38 @@
 		<h1>Subscribe to a Feed</h1>
 		<table class="standard">
 				<tr>
-					<th>Image</th>
+					<th></th>
 					<th>Title</th>
 					<th>URL</th>
 					<th>Description</th>
-					<th>Remove?</th>
+					<th></th>
 				</tr>
 				
-				<c:forEach var="feedItem" items="${feedItems}">
+				<% List<Feed> feedList = FeedController.listFeeds(); %>
+				
+				<% for(Feed f : feedList) {%>
 				<tr>
-					<td>${feedItem.image}</td>
-					<td>${feedItem.title}</td>
-					<td>${feedItem.url}</td>
-					<td>${feedItem.description}</td>
+				<td><%if (f.getImage() != null) {%>
+						<IMG SRC="<%out.print(f.getImage());%>"> 
+						<% } %>
+					</td>
+					<td><%out.print(f.getTitle());%></td>
+					<td><%out.print(f.getUrl());%></td>
+					<td><%out.print(f.getDescription());%></td>
 					<td>
 						<form action="" method="POST">
-							<input type="hidden" name="addFeed" value="${feedItem.id}">
-							<input type="submit" value="Add">
+							<input type="hidden" name="feedId" value="<%f.getId();%>">
+							<input type="hidden" name="action" value="subscribeToFeed">
+							<input type="submit" value="Subscribe">
 						</form>
+					</td>
 				</tr>
-				</c:forEach>
-		</table>
-
+				<% }%>
+				
+				</table>
 		<br>
 		<div class="center">
-			<a href="feed.jsp"><input class="gray-flat-button" type="submit" value="Cancel"></a>   		
+			<a href="editfeed.jsp"><input class="gray-flat-button" type="submit" value="Cancel"></a>   		
 		</div>
 	</div>
 	<%@ include file="/includes/footer.jsp" %>

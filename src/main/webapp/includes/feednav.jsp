@@ -1,22 +1,30 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.feedz.models.FeedItem"%>
+<%@page import="com.feedz.controllers.FeedController"%>
+<%@page import="com.feedz.models.Feed"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 
 <link rel="stylesheet" type="text/css" href="styles/main.css">
-<div class="feednav">
-	<a href="#about">About</a>
- 	
- 	<c:if test="$(not empty feedItems">		<!-- check if not null --> 
-	 	<c:forEach var="feedItem" items="${feedItems}">
-	 	<form action="FeedServlet" method="POST">
-			<input type="hidden" name="showFeed" value="${feedItem.id}">
-			<input class="gray-flat-button" type="submit" value="${feedItem.title}">
-		</form>
-		
-	 	</c:forEach>
- 	</c:if>
+<div class="feednav">	
+	<% List<Feed> feedList = FeedController.listFeeds(); %>
+			<table>	
+				<% for(Feed f : feedList) {%>
+				<tr>
+					<td><%if (f.getImage() != null) {%>
+						<IMG src="<%out.print(f.getImage());%>" height="42" width="42"> 
+						<% } %>
+					</td>
+					<td>
+						<form action="FeedServlet" method="POST">
+							<input type="hidden" name="feedId" value="<%f.getId();%>">
+							<input type="hidden" name="action" value="showFeed">
+							<input class="feednav-btn" type="submit" value="<%out.print(f.getTitle());%>">
+						</form>
+					</td>
+				</tr>
+				<% }%>
+			</table>
  	
 	<a href="editfeed.jsp"><input class="full-green-flat-button" type="submit" value="Edit Feed" class="center"></a>  
  	

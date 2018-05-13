@@ -8,9 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit Profile</title>
 <link rel="stylesheet" type="text/css" href="../styles/main.css">
-<script src="thirdparty/jquery-3.3.1.min.js"></script>
-<script src="thirdparty/jquery.validate.min.js"></script>
-<script src="javascript/main.js"></script>
+<script src="../thirdparty/jquery-3.3.1.min.js"></script>
+<script src="../thirdparty/jquery.validate.min.js"></script>
+<script src="../javascript/main.js"></script>
 </head>
 <body>
 	<!-- Get user-role navbar -->
@@ -28,6 +28,9 @@
 		<h1>Edit My Profile</h1>
 		<div class="content-white">
 		<form name = "updateProfile" action="UserServlet" method="post">
+			<% if(request.getAttribute("message") != null) { %>
+                	<p style="text-align: center; color: red; margin: auto;">${message}</p>
+            <% } %>
 			<h3>Update Profile</h3>
 			<table class="invisible">
 				<tr>

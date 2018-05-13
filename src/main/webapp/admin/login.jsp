@@ -13,7 +13,10 @@
 </head>
 	<body>
 	<div class="content">
-        <form name ="login" action="/Feedz/UserServlet" method="POST">
+        <form name ="login" action="UserServlet" method="POST">
+        		<% if(request.getAttribute("message") != null) { %>
+                	<p style="text-align: center; color: red; margin: auto;">${message}</p>
+            <% } %>
             <table class="standard" width="280em">
                 <tbody>
                 	<tr>

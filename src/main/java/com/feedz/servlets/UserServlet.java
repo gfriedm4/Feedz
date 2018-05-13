@@ -80,11 +80,13 @@ public class UserServlet extends HttpServlet {
 			}
 			else {
 				// incorrect password
+				request.setAttribute("message", "Incorrect email/password combo...");
 				return "/user/login.jsp";
 			}
 		}
 		else {
 			// error, no email or password
+			request.setAttribute("message", "Invalid input parameters, try again...");
 			return "/user/login.jsp";
 		}
 	}
@@ -142,11 +144,13 @@ public class UserServlet extends HttpServlet {
 			}
 			else {
 				// Couldnt be updated
+				request.setAttribute("message", "User profile could not be updated.  If problem persists, contact your admin.");
 				return "/user/editprofile.jsp";
 			}
 		}
 		else {
 			// invalid parameters
+			request.setAttribute("message", "Invalid parameters, try again...");
 			return "/user/editprofile.jsp";
 		}
 	}
@@ -165,16 +169,19 @@ public class UserServlet extends HttpServlet {
 				}
 				else {
 					// Something went wrong
+					request.setAttribute("message", "Couldn't update password.  Re-log in and try again.");
 					return "/user/login.jsp";
 				}
 			}
 			else {
 				// invalid parameters
+				request.setAttribute("message", "Invalid parameters, try updating your password again.");
 				return "/user/editprofile.jsp";
 			}
 		}
 		else {
 			// No user, can't update without a user
+			request.setAttribute("message", "Could not verify the user. Re-log in and try again.");
 			return "/user/login.jsp";
 		}
 	}
@@ -196,6 +203,7 @@ public class UserServlet extends HttpServlet {
 				}
 				else {
 					// Not an admin
+					request.setAttribute("message", "Your account is not an admin.  Try loggin in the using the normal user login");
 					return "/user/login.jsp";			
 				}
 			}
@@ -206,6 +214,7 @@ public class UserServlet extends HttpServlet {
 		}
 		else {
 			// error, no email or password
+			request.setAttribute("message", "Invalid parameters, try again...");
 			return "/admin/login.jsp";
 		}
 	}

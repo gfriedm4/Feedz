@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register</title>
 <link rel="stylesheet" type="text/css" href="../styles/main.css">
-<script src="thirdparty/jquery-3.3.1.min.js"></script>
-<script src="thirdparty/jquery.validate.min.js"></script>
-<script src="javascript/main.js"></script>
+<script src="../thirdparty/jquery-3.3.1.min.js"></script>
+<script src="../thirdparty/jquery.validate.min.js"></script>
+<script src="../javascript/main.js"></script>
 <%@ include file="/includes/header.html" %>
 </head>
 <body>
@@ -16,6 +16,10 @@
 		<h1>Register</h1>
 		<div class="content-white">
 		<form name="register" action="UserServlet" method="post">
+			<% if(request.getAttribute("message") != null) { %>
+                	<p style="text-align: center; color: red; margin: auto;">${message}</p>
+            <% } %>
+
 			<input class="form-input" type="hidden" name="action" value="register">
 	        <label class="form-label">Email</label>
 	        <input class="form-input" type="email" name="email" value=""><br>

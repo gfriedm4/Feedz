@@ -51,14 +51,14 @@
 					<td><%out.print(f.getUrl());%></td>
 					<td><%out.print(f.getDescription());%></td>
 					<td>
-						<form action="" method="POST">
-							<input type="hidden" name="feedId" value="<%out.print(f.getId());%>>">
+						<form action="FeedServlet" method="POST">
+							<input type="hidden" name="feedId" value="<%out.print(f.getId());%>">
 							<input type="hidden" name="action" value="subscribeToFeed">
-							<input type="submit" value="Subscribe">
+							<input type="submit" name="subscribe" value="Subscribe">
 						</form>
 					</td>
 				</tr>
-				<% }%>
+				<% } %>
 				
 				</table>
 		<br>

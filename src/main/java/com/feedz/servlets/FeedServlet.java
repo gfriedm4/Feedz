@@ -9,6 +9,7 @@ import com.feedz.models.FeedItem;
 import com.feedz.models.FeedUser;
 import com.feedz.models.User;
 import com.feedz.utils.FeedUtilities;
+import com.feedz.utils.UserUtilities;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import java.io.IOException;
@@ -26,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gfriedman
  */
-@WebServlet(name = "FeedServlet", urlPatterns = {"/Feed", "/Feed/*"})
+@WebServlet(name = "FeedServlet", urlPatterns = {"/admin/FeedServlet", "/user/FeedServlet", "/FeedServlet", "/Feed", "/Feed/*"})
 public class FeedServlet extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,18 +40,28 @@ public class FeedServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pathInfo = request.getPathInfo();
+        
+        
+        String subscribe = request.getParameter("subscribe");
+        
+        if (subscribe != null) {
+            int feedId = Integer.parseInt(request.getParameter("feedId"));
+            int userId = ((User)request.getSession().getAttribute("user")).getId();
+            UserUtilities.addFeedToUser(userId, feedId);
+            request.getRequestDispatcher("/user/subscribe.jsp").forward(request, response);
+            return;
+        }
+        
+        String action = request.getParameter("action");
         ArrayList<Integer> ids = new ArrayList<>();
         // If we have an id in the URL, only get that feed
-        if (pathInfo != null) {
-            String[] split = pathInfo.split("/");
-            if (split.length > 0) {
-                try {
-                    int id = Integer.parseInt(split[1]);
-                    ids.add(id);
-                } catch (NumberFormatException e) {
-                    int i = 1;
-                }
+        if (action != null && action.equals("showFeed")) {
+            try {
+                String feedId = request.getParameter("feedId");
+                ids.add(Integer.parseInt(feedId));
+            } catch (NumberFormatException e) {
+            
+                String test = "";
             }
         }
         

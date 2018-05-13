@@ -17,9 +17,9 @@
 					</td>
 					<td>
 						<form action="FeedServlet" method="POST">
-							<input type="hidden" name="feedId" value="<%f.getId();%>">
+							<input type="hidden" name="feedId" value="<%= f.getId() %>">
 							<input type="hidden" name="action" value="showFeed">
-							<input class="feednav-btn" type="submit" value="<%out.print(f.getTitle());%>">
+							<input class="feednav-btn" type="submit" value="<%= f.getTitle()%>">
 						</form>
 					</td>
 				</tr>

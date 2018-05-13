@@ -66,11 +66,11 @@
     <!-- you can comment out these tags when the app is in development -->
     <error-page>
         <error-code>404</error-code>
-        <location>/error/error_404.jsp</location>
+        <location>/errors/error_404.jsp</location>
     </error-page>
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-        <location>/error/error_java.jsp</location>
+        <location>/errors/error_java.jsp</location>
     </error-page>
     
     <session-config>

@@ -17,7 +17,7 @@
 		<div class="content-white center">
 		<form name="newFeed" action="FeedServlet" method="POST">
 			<label class="formLabel">Feed URL: </label>
-			<input type="text" name="feedURL" size="50" >
+			<input id="feedUrl" type="text" name="feedURL" size="50" >
 			&nbsp;
 			<br>
 			<br>

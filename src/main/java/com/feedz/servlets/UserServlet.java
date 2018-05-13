@@ -130,11 +130,19 @@ public class UserServlet extends HttpServlet {
 		}
 		
 		if(email != null && firstName != null && lastName != null) {
+			
 			User newUser = new User();
 			newUser.setEmail(email);
 			newUser.setFirstName(firstName);
 			newUser.setLastName(lastName);
 			newUser.setHasNotifications(notificationsVal);
+			String path = request.getRequestURL().toString();
+			if(path.contains("admin")){
+				newUser.setRole(1);
+			}
+			else {
+				newUser.setRole(0);
+			}
 			
 			newUser = UserUtilities.updateUser(newUser);
 			

@@ -30,27 +30,29 @@
 		<div class="main">
 		<%@ include file="/includes/user/feednav.jsp" %>	
 			<h1>Your Feedz</h1>
-			
-			
-		<c:choose>
-			<c:when test="${feedItems != null}">
-			<table class="standard">
-				<c:forEach var="feedItem" items="${feedItems}">
-				<tr>
-					<td>${feedItem.image}</td>
-					<td><h2>${feedItem.title}</h2></td>
-					<td>${feedItem.url}</td>
-					<td>${feedItem.description}</td>
-				</tr>
-				</c:forEach>
-			</table>
-			</c:when>
-			<c:otherwise>
-				<div>Hm... looks like you don't have any feeds yet. Click  
-				<a href="editfeed.jsp">Edit Feed</a>
-				to get started!</div>
-			</c:otherwise>
-		</c:choose>
+			<% 
+				List<FeedItem> feeds = (ArrayList<FeedItem>) request.getAttribute("feedItems");
+		 	 	if(feeds != null){
+			    for(FeedItem feedItem : feeds)
+			    {
+			%>
+			<div class="feed-item">
+			<% out.print("<h2>" + feedItem.getTitle() + "</h2>");
+				if (!feedItem.getDescription().isEmpty()) { %>
+			<div class="feed-description">
+				<% out.print(feedItem.getDescription());%>
+			</div>
+			<% }
+			     if (!feedItem.getLink().isEmpty()) {
+				%>
+			<a class="feed-link" href="<%= feedItem.getLink() %>">
+			<% out.print(feedItem.getLink()); %>    
+			</a>
+			<% } %>
+			</div>
+			<%} } else{ %>
+				<div>Hm... looks like there aren't any feeds yet.</div>
+			<%	} %>
 		</div>
 	</div>
 		<%@ include file="/includes/footer.jsp" %>

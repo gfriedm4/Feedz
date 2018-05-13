@@ -24,10 +24,7 @@
 					</td>
 				</tr>
 				<% }%>
-			</table>
- 	
-	<a href="editfeed.jsp"><input class="full-green-flat-button" type="submit" value="Edit Feed" class="center"></a>  
- 	
+			</table> 	
 </div>
 
 

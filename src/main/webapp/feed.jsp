@@ -18,44 +18,28 @@
 		<%@ include file="/includes/feednav.jsp" %>	
 			<h1>Your Feedz</h1>
 			<% 
-				List<FeedItem> feeds = (ArrayList<FeedItem>)request.getAttribute("feedItems");
+				List<FeedItem> feeds = (ArrayList<FeedItem>) request.getAttribute("feedItems");
 		 	 	if(feeds != null){
 			    for(FeedItem feedItem : feeds)
 			    {
 			%>
-			  <div class="feed-item">
-			<%
-					out.print("<h2>" + feedItem.getTitle() + "</h2>");
-				if (!feedItem.getDescription().isEmpty()) {
-				%>
+			<div class="feed-item">
+			<% out.print("<h2>" + feedItem.getTitle() + "</h2>");
+				if (!feedItem.getDescription().isEmpty()) { %>
 			<div class="feed-description">
-			<%    
-					out.print(feedItem.getDescription());
-				%>
+				<% out.print(feedItem.getDescription());%>
 			</div>
-			<% 
-			     }
+			<% }
 			     if (!feedItem.getLink().isEmpty()) {
 				%>
 			<a class="feed-link" href="<%= feedItem.getLink() %>">
-			<%    
-					out.print(feedItem.getLink());
-				%>    
+			<% out.print(feedItem.getLink()); %>    
 			</a>
-			<%
-					}
-				%>
+			<% } %>
 			</div>
-			<%
-					}
-				}
-				else{
-				%>
-			
+			<%} } else{ %>
 				<div>Hm... looks like there aren't any feeds yet.</div>
-			<%
-				}
-				%>
+			<%	} %>
 		</div>
 	</div>
 		<%@ include file="/includes/footer.jsp" %>

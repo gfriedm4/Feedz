@@ -46,12 +46,12 @@
 						none
 						<% }%>
 					</td>
-					<td><%if (f.getImage() != null) {
+					<td><%if (f.getCreated() != null) {
 						out.print(f.getCreated());
 						} else { %>
 						none
 						<% }%></td>
-					<td><%if (f.getImage() != null) {
+					<td><%if (f.getUpdated() != null) {
 						out.print(f.getUpdated());
 						} else { %>
 						none

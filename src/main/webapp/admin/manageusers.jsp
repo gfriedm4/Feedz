@@ -39,10 +39,30 @@
 					<td><%out.print(u.getLastName());%></td>
 					<td><%out.print(u.getFirstName());%></td>
 					<td><%out.print(u.getEmail());%></td>
-					<td><%out.print(u.isHasNotifications());%></td>
-					<td><%out.print(u.getCreated());%></td>
-					<td><%out.print(u.getUpdated());%></td>
-					<td><%out.print(u.getRole());%></td>
+					<td><%if (u.isHasNotifications() == true) { %>
+					Yes
+					<% } else { %>
+					No
+					<% }%>
+					</td>
+					<td><%if (u.getCreated() != null) {
+						out.print(u.getCreated());
+						} else { %>
+						none
+						<% }%>
+					</td>
+					<td><%if (u.getUpdated() != null) {
+						out.print(u.getUpdated());
+						} else { %>
+						none
+						<% }%>
+					</td>
+					<td><%if (u.getRole() == 1) { %>
+						Admin
+						<% } else { %>
+						User
+						<% }%>
+					</td>
 					<td><%out.print(u.getFeedUsers().size());%></td>
 					<td>
 						<form action="UserServlet" method="POST">

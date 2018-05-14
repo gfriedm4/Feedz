@@ -46,8 +46,16 @@
 						none
 						<% }%>
 					</td>
-					<td><%out.print(f.getCreated());%></td>
-					<td><%out.print(f.getUpdated());%></td>
+					<td><%if (f.getImage() != null) {
+						out.print(f.getCreated());
+						} else { %>
+						none
+						<% }%></td>
+					<td><%if (f.getImage() != null) {
+						out.print(f.getUpdated());
+						} else { %>
+						none
+						<% }%></td>
 					<td><%out.print(f.getFeedUsers().size());%></td>
 					<td>
 						<form action="FeedServlet" method="POST">

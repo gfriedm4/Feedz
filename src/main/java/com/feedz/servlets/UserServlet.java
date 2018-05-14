@@ -144,7 +144,7 @@ public class UserServlet extends HttpServlet {
                         user.setRole(0);
                     }
 
-                    user = UserUtilities.updateUser(user);
+                    user = UserController.updateUser(user);
 
                     if(user != null) {
                         request.getSession().setAttribute("user", user);

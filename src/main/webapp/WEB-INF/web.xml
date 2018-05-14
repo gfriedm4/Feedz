@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>Feedz Project</display-name>
-  <welcome-file-list>
-    <welcome-file>feed.html</welcome-file>
-    <welcome-file>feed.htm</welcome-file>
-    <welcome-file>feed.jsp</welcome-file>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  
-  
-   <!-- Define two security roles -->
+<web-app id="WebApp_ID" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>Feedz Project</display-name>
+    <welcome-file-list>
+        <welcome-file>feed.html</welcome-file>
+        <welcome-file>feed.htm</welcome-file>
+        <welcome-file>feed.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+    <!-- Define two security roles -->
     <security-role>
         <description>normal user</description>
         <role-name>user</role-name>
@@ -23,46 +21,15 @@
         <description>admin user</description>
         <role-name>admin</role-name>
     </security-role>
-    
-    <!--
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Protected Area</web-resource-name>
-            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/*</url-pattern>
         </web-resource-collection>
-        
-        <auth-constraint>
-            <role-name>admin</role-name>
-        </auth-constraint>
-
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
-    
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <form-login-config>
-            <form-login-page>/admin/login.jsp</form-login-page>
-            <form-error-page>/admin/login_error.jsp</form-error-page>
-        </form-login-config>
-    </login-config>
-    -->
-
-<!--
-	<servlet>
-		<servlet-name>UserServlet</servlet-name>
-		<servlet-class>com.feedz.servlets.UserServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>UserServlet</servlet-name>
-		<url-pattern>/Feedz/user/*</url-pattern>
-		<url-pattern>/Feedz/admin/*</url-pattern>
-	</servlet-mapping>
--->
-    
-    
     <!-- you can comment out these tags when the app is in development -->
     <error-page>
         <error-code>404</error-code>
@@ -72,9 +39,7 @@
         <exception-type>java.lang.Throwable</exception-type>
         <location>/errors/error_java.jsp</location>
     </error-page>
-    
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
-    
 </web-app>

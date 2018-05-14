@@ -53,7 +53,7 @@
 			<% } %>
 			</div>
 			<%} } else{ %>
-				<div>Hm... looks like there aren't any feeds yet.</div>
+				<div>Register for an account to create a custom feed!</div>
 			<%	} %>
 		</div>
 	</div>

@@ -18,14 +18,12 @@ import org.mindrot.jbcrypt.BCrypt;
 public class UserUtilities {
     
     public static boolean checkPassword(String email, String password) {
-        
-        UserController controller = new UserController();
-        User user = controller.getUserByEmail(email);
+        User user = UserController.getUserByEmail(email);
         
         if (user == null) {
             return false;
         }
-        
+
         return BCrypt.checkpw(password, user.getPassword());
     }
     

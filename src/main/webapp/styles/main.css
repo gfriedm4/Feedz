@@ -70,8 +70,7 @@ table.long  th {
 	background-color: #b3f7e9;
 	font-size: 0.9em; 
     border: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
     text-align: left;
 }
 table.long tr:nth-child(odd){

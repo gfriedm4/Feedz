@@ -6,17 +6,17 @@
 <div class="topnav">
 	<ul>
 		<li>
-			<a href="${pageContext.request.contextPath}/user/feed.jsp"><i class="fa fa-feed">  Feedz</i></a>
+			<a href="${pageContext.request.contextPath}/user/feed.jsp"><i class="fa fa-feed"></i>  Feedz</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}/user/profile.jsp"><i class="fa fa-user">  Profile</i></a>
+			<a href="${pageContext.request.contextPath}/user/profile.jsp"><i class="fa fa-user"></i>  Profile</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}/admin/managefeeds.jsp"><i class="fa fa-lock">  Manage Feeds</i></a>
+			<a href="${pageContext.request.contextPath}/admin/managefeeds.jsp"><i class="fa fa-lock"></i>  Manage Feeds</a>
 		</li>
 		
 		<li>
-			<a href="${pageContext.request.contextPath}/admin/manageusers.jsp"><i class="fa fa-lock">  Manage Users</i></a>
+			<a href="${pageContext.request.contextPath}/admin/manageusers.jsp"><i class="fa fa-lock"></i>  Manage Users</a>
 		</li>
 		
 

@@ -16,25 +16,47 @@
 		<h1>Register</h1>
 		<div class="content-white">
 		<form name="register" action="UserServlet" method="post">
-			<% if(request.getAttribute("message") != null) { %>
-                	<p style="text-align: center; color: red; margin: auto;">${message}</p>
-            <% } %>
+	        <div class="center">
+				<% if(request.getAttribute("message") != null) { %>
+	                	<p style="text-align: center; color: red; margin: auto;">${message}</p>
+	            <% } %>
+            </div>
+            
+            <table class="invisible">
+            	<tr>
+            	</tr>
+				<tr>
+					<td><label>Email</label></td>
+					<td><input class="form-input" type="email" name="email" value=""> </td>
+				</tr>
+				<tr>
+					<td><label>Password</label></td>
+					<td><input class="form-input" id="password" type="password" name="password" value=""> </td>
+				</tr>
+				<tr>
+					<td><label>Confirm Password</label></td>
+					<td><input class="form-input" type="password" name="confirmPassword"> </td>
+				</tr>
+				<tr>
+					<td><label>First Name</label></td>
+					<td><input class="form-input" type="text" name="firstName" value=""> </td>
+				</tr>
+				<tr>
+					<td><label>Last Name</label></td>
+					<td><input class="form-input" type="text" name="lastName" value=""> </td>
+				</tr>
+				<tr>
+					<td><label>Notifications Opt-in</label></td>
+					<td><input class="checkbox" type="checkbox" name="hasNotifications" value=""> </td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+			</table>
 
-			<input class="form-input" type="hidden" name="action" value="register">
-	        <label class="form-label">Email</label>
-	        <input class="form-input" type="email" name="email" value=""><br>
-	        <label class="form-label">Password</label>
-	        <input class="form-input" id="password" type="password" name="password" value=""><br>
-	        <label class="form-label">Confirm Password</label>
-	        <input class="form-input" type="password" name="confirmPassword"><br>
-	       	<label class="form-label">First Name</label>
-	        <input class="form-input" type="text" name="firstName" value=""><br>
-	        <label class="form-label">Last Name</label>
-	        <input class="form-input" type="text" name="lastName" value=""><br>        
-	        <label class="form-label">Notifications Opt-in</label>
-	        <input class="checkbox" type="checkbox" name="hasNotifications" value=""><br>        
+	       	
+	        <br>        
 	        <label>&nbsp;</label>
 	        <div class="center">
+				<input class="form-input" type="hidden" name="action" value="register">
 	        	<input class="green-flat-button" type="submit" value="Register" class="margin_left">
 	        </div>
 		</form>

@@ -24,7 +24,7 @@
             <% if(request.getAttribute("message") != null) { %>
                 <p style="text-align: center; color: red; margin: auto;">${message}</p>
             <% } %>
-            <table class="standard" width="280em">
+            <table class="invisible" width="280em">
                 <tbody>
                
                 	<tr>

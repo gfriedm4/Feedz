@@ -1,3 +1,6 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,10 +18,10 @@
 	        <p>Please check your username and password and try again.</p>
         </div>
         <form action="UserServlet" method="POST">
-            <table class="standard" width="280em">
+            <table class="invisible" width="280em">
                 <tbody>
                 	<tr>
-                		<td><b>Admin Login - Error</b></td>
+                		<td bgcolor="#FFFF99"><i class="fa fa-lock"></i>&nbsp;<b>Admin Login - Error</b></td>
                     </tr>
                     <tr>
                         <td colspan="2">Email</td>

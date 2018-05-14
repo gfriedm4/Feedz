@@ -15,7 +15,7 @@
 	        <p>Please check your username and password and try again.</p>
         </div>
         <form action="UserServlet" method="POST">
-            <table class="standard" width="280em">
+            <table class="invisible" width="280em">
                 <tbody>
                     <tr>
                 		<td><b>Login</b></td>

@@ -7,10 +7,10 @@
 <div class="topnav">
 	<ul>
 		<li>
-			<a href="${pageContext.request.contextPath}/user/feed.jsp"><i class="fa fa-feed">  Feedz</i></a>
+			<a href="${pageContext.request.contextPath}/user/feed.jsp"><i class="fa fa-feed"></i>  Feedz</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}/user/profile.jsp"><i class="fa fa-user">  Profile</i></a>
+			<a href="${pageContext.request.contextPath}/user/profile.jsp"><i class="fa fa-user"></i>  Profile</a>
 		</li>
 
 		<li style="float: right">

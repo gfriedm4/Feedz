@@ -5,6 +5,7 @@
  */
 package com.feedz.servlets;
 
+import com.feedz.controllers.FeedController;
 import com.feedz.models.FeedItem;
 import com.feedz.models.FeedUser;
 import com.feedz.models.User;
@@ -100,6 +101,20 @@ public class FeedServlet extends HttpServlet {
             
                 String test = "";
             }
+        }
+        
+        if (action != null && action.equals("adminAddFeed")) {
+            String url = request.getParameter("feedURL");
+            FeedUtilities.createFeed(url);
+            request.getRequestDispatcher("/admin/managefeeds.jsp").forward(request, response);  
+            return;
+        }
+        
+        if (action != null && action.equals("adminRemoveFeed")) {
+            String id = request.getParameter("feedId");
+            FeedController.deleteFeed(Integer.parseInt(id));
+            request.getRequestDispatcher("/admin/managefeeds.jsp").forward(request, response);  
+            return;
         }
         
         // If there is no valid parameter, get all of the logged in user's feeds

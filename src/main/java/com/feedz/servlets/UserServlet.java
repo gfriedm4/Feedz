@@ -124,42 +124,42 @@ public class UserServlet extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String notifications = request.getParameter("hasNotifications");
+                
 		boolean notificationsVal = false;
 		if(notifications != null) {
-			notificationsVal = true;
+                    notificationsVal = true;
 		}
 		
 		if(email != null && firstName != null && lastName != null) {
-			
-			User newUser = new User();
-			newUser.setEmail(email);
-			newUser.setFirstName(firstName);
-			newUser.setLastName(lastName);
-			newUser.setHasNotifications(notificationsVal);
-			String path = request.getRequestURL().toString();
-			if(path.contains("admin")){
-				newUser.setRole(1);
-			}
-			else {
-				newUser.setRole(0);
-			}
-			
-			newUser = UserUtilities.updateUser(newUser);
-			
-			if(newUser != null) {
-				request.getSession().setAttribute("user", newUser);
-				return "/user/profile.jsp";
-			}
-			else {
-				// Couldnt be updated
-				request.setAttribute("message", "User profile could not be updated.  If problem persists, contact your admin.");
-				return "/user/editprofile.jsp";
-			}
+                    User user = (User) request.getSession().getAttribute("user");
+                    user.setEmail(email);
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
+                    user.setHasNotifications(notificationsVal);
+                    String path = request.getRequestURL().toString();
+                    if(path.contains("admin")){
+                        user.setRole(1);
+                    }
+                    else {
+                        user.setRole(0);
+                    }
+
+                    user = UserUtilities.updateUser(user);
+
+                    if(user != null) {
+                        request.getSession().setAttribute("user", user);
+                        return "/user/profile.jsp";
+                    }
+                    else {
+                        // Couldnt be updated
+                        request.setAttribute("message", "User profile could not be updated.  If problem persists, contact your admin.");
+                        return "/user/editprofile.jsp";
+                    }
 		}
 		else {
-			// invalid parameters
-			request.setAttribute("message", "Invalid parameters, try again...");
-			return "/user/editprofile.jsp";
+                    // invalid parameters
+                    request.setAttribute("message", "Invalid parameters, try again...");
+                    return "/user/editprofile.jsp";
 		}
 	}
 

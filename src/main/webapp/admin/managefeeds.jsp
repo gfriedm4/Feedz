@@ -50,7 +50,7 @@
 					<td><%out.print(f.getFeedUsers().size());%></td>
 					<td>
 						<form action="FeedServlet" method="POST">
-							<input type="hidden" name="feedId" value="<%f.getId();%>">
+							<input type="hidden" name="feedId" value="<%= f.getId() %>">
 							<input type="hidden" name="action" value="adminRemoveFeed">
 							<input type="submit" value="Remove">
 						</form>

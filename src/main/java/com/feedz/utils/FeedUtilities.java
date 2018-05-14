@@ -96,10 +96,10 @@ public class FeedUtilities {
                     return b.getCreated().compareTo(a.getCreated());
                 }
                 else if(a.getCreated() == null) {
-                    return -1;
+                    return 1;
                 }
                 else if(b.getCreated() == null) {
-                    return 1;
+                    return -1;
                 }
                 return 0;
             }

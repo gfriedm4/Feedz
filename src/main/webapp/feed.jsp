@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="com.feedz.utils.FeedUtilities"%>
 <%@page import="com.feedz.models.User"%>
 <%@page import="com.feedz.models.FeedItem"%>
@@ -23,14 +25,14 @@
 			<% 
 				List<FeedItem> feeds = null;
 				if (request.getAttribute("feedItems") != null) {
-					feeds = (List<FeedItem>) request.getAttribute("feedItems");
+                                    feeds = (List<FeedItem>) request.getAttribute("feedItems");
 				}
 				else if (request.getSession().getAttribute("user") != null){
-					User user = (User) request.getSession().getAttribute("user");
-					feeds = FeedUtilities.getUserFeed(user.getId());
+                                    User user = (User) request.getSession().getAttribute("user");
+                                    feeds = FeedUtilities.getUserFeed(user.getId());
 				}
 				else {
-					feeds = new ArrayList();
+                                    feeds = new ArrayList();
 				}
 		 	 	if(!feeds.isEmpty()){
 			    	for(FeedItem feedItem : feeds)
@@ -39,7 +41,9 @@
 			<div class="feed-item">
 			<% out.print("<h2>" + feedItem.getTitle() + "</h2>");
                          if (feedItem.getCreated() != null) {
-                                out.print("<span>" + feedItem.getCreated().toString() + "</span>");
+                                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                                DateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+                                out.print("<h4>" + dateFormat.format(feedItem.getCreated()) + " at " + timeFormat.format(feedItem.getCreated()) + "</h4>");
                             }
 				if (!feedItem.getDescription().isEmpty()) { %>
 			<div class="feed-description">

@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="com.feedz.utils.FeedUtilities"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -52,7 +54,9 @@
 			<div class="feed-item">
 			<% out.print("<h2>" + feedItem.getTitle() + "</h2>");
                             if (feedItem.getCreated() != null) {
-                                out.print("<span>" + feedItem.getCreated().toString() + "</span>");
+                                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                                DateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+                                out.print("<h4>" + dateFormat.format(feedItem.getCreated()) + " at " + timeFormat.format(feedItem.getCreated()) + "</h4>");
                             }
 				if (!feedItem.getDescription().isEmpty()) { %>
 			<div class="feed-description">

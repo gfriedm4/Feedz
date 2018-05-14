@@ -5,13 +5,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Page Not Found - Feedz</title>
-	<link rel="stylesheet" type="text/css" href="../styles/main.css">
-	<%@ include file="/includes/header.html" %>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+	<%@ include file="../includes/header.html" %>
 </head>
 <body>
-	<h2>404 Error</h2>
-	<p>Sorry, the server was not able to find the page you requested.</p>
-	<p>To continue, click the Back button.</p>
-	<%@ include file="/includes/footer.jsp" %>
+	<div class="content">
+		<h2>404 Error</h2>
+		<p>Sorry, the server was not able to find the page you requested.</p>
+		<p>To continue, click the Back button.</p>
+	</div>
+	<%@ include file="../includes/footer.jsp" %>
 </body>
 </html>

@@ -9,13 +9,15 @@
 	<%@ include file="/includes/header.html"%>
 </head>
 <body>
-	<h2>Java Error</h2>
-	<p>Sorry, Java has thrown an exception.</p>
-	<p>To continue, click the Back button.</p>
-	
-	<h2>Details</h2>
-	<p>Type: ${pageContext.exception["class"]}</p>
-	<p>Message: ${pageContext.exception.message}</p>
+	<div class="content">
+		<h2>Java Error</h2>
+		<p>Sorry, Java has thrown an exception.</p>
+		<p>To continue, click the Back button.</p>
+		
+		<h2>Details</h2>
+		<p>Type: ${pageContext.exception["class"]}</p>
+		<p>Message: ${pageContext.exception.message}</p>
+	</div>
 	<%@ include file="/includes/footer.jsp" %>
 </body>
 </html>

@@ -16,7 +16,8 @@
 <body>
 	<%@ include file="/includes/admin/topnav.jsp" %>
 	<div class="content">
-		<h1>Manage Available Feeds</h1>
+		<h1>Manage Feeds</h1>
+		<h3>Manage what feeds are available to users</h3>
 		<div class="content-white">
 			<table class="long">
 				<tr>

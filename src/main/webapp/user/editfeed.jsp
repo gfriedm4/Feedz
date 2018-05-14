@@ -31,8 +31,7 @@
 	
 	<!-- Page content -->
 	<div class="content">
-		<h1>Edit My Feed</h1>
-		
+		<h1>Edit My Feedz</h1>
 		<a href="feed.jsp"><input class="gray-flat-button" type="submit" value="Back to Feed"></a>   	
 		<br>
 		<br>

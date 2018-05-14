@@ -18,22 +18,23 @@
 		<%@ include file="/includes/topnav.jsp" %>
 		<div class="main">
 		<%@ include file="/includes/feednav.jsp" %>	
-			<h1>Feedz</h1>
+		<h1>${feedTitle} Feedz</h1>
+		<div class="feed-content">
 			<% 
-                            List<FeedItem> feeds = null;
-                            if (request.getAttribute("feedItems") != null) {
-                                feeds = (List<FeedItem>) request.getAttribute("feedItems");
-                            }
-                            else if (request.getSession().getAttribute("user") != null){
-                                User user = (User) request.getSession().getAttribute("user");
-                                feeds = FeedUtilities.getUserFeed(user.getId());
-                            }
-                            else {
-                                feeds = new ArrayList();
-                            }
+				List<FeedItem> feeds = null;
+				if (request.getAttribute("feedItems") != null) {
+					feeds = (List<FeedItem>) request.getAttribute("feedItems");
+				}
+				else if (request.getSession().getAttribute("user") != null){
+					User user = (User) request.getSession().getAttribute("user");
+					feeds = FeedUtilities.getUserFeed(user.getId());
+				}
+				else {
+					feeds = new ArrayList();
+				}
 		 	 	if(!feeds.isEmpty()){
-			    for(FeedItem feedItem : feeds)
-			    {
+			    	for(FeedItem feedItem : feeds)
+			    	{
 			%>
 			<div class="feed-item">
 			<% out.print("<h2>" + feedItem.getTitle() + "</h2>");
@@ -55,6 +56,7 @@
 			<%} } else{ %>
 				<div>Register for an account to create a custom feed!</div>
 			<%	} %>
+			</div>
 		</div>
 	</div>
 		<%@ include file="/includes/footer.jsp" %>

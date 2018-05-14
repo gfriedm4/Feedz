@@ -30,7 +30,8 @@
 		<div class="content">
 		<div class="main">
 		<%@ include file="/includes/user/feednav.jsp" %>	
-			<h1>Your Feedz</h1>
+		<h1>${feedTitle} Feedz</h1>
+		<div class="feed-content">
 			<% 
                             List<FeedItem> feeds = null;
                             if (request.getAttribute("feedItems") != null) {
@@ -66,8 +67,9 @@
 			<% } %>
 			</div>
 			<%} } else{ %>
-				<div>Hm... looks like there aren't any feeds yet.</div>
+				<div>Edit your feed to get started!</div>
 			<%	} %>
+		</div>
 		</div>
 	</div>
 		<%@ include file="/includes/footer.jsp" %>

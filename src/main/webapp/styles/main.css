@@ -1,8 +1,9 @@
 @charset "ISO-8859-1";
-
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 body {
     background-color: #d0d5e6;  /* blue-gray */
-    font-family: Verdana, Arial, sans-serif;
+	font-family: 'Raleway', sans-serif;
     margin: 0px 0px 0px 0px;
 }
 
@@ -19,6 +20,22 @@ label {
 span {
     margin-left: 0.5em;    
     margin-bottom: 0.5em;    
+}
+
+h1 { 
+	font-family: 'Raleway', sans-serif;
+	color: #111; 
+	font-size: 55px; font-weight: 500; 
+	line-height: 50px; margin: 0 0 0; 
+	padding: 20px 0px; 
+	text-transform: uppercase;
+}
+h3 { 
+	font-family: 'Raleway', sans-serif;
+	color: #111; 
+	font-size: 18px; font-weight: 500; 
+	margin: 0 0 0; 
+	padding: 0px 0px 20px; 
 }
 
 .form-label  {
@@ -51,9 +68,16 @@ table.long {
     margin:auto;	/* centered */
 }
 table.long  th {
+	background-color: #b3f7e9;
 	font-size: 0.9em; 
     border: none;
     padding: 5px;
+}
+table.long tr:nth-child(odd){
+  background-color: #e6e6e6;
+}
+table.long tr:nth-child(even){
+  background-color: white;
 }
 table.long  td {
 	font-size: 0.7em;
@@ -67,13 +91,18 @@ table.standard {
     background-color: white;
     margin:auto;	/* centered */
 }
-
 table.standard  th {
+	background-color: #c9faf0;
 	font-size: 0.9em; 
     border: none;
     padding: 5px;
 }
-
+table.standard tr:nth-child(odd){
+  background-color: #f0f0f0;
+}
+table.standard tr:nth-child(even){
+  background-color: white;
+}
 table.standard  td {
     border: none;
     padding: 5px;
@@ -85,12 +114,10 @@ table.invisible {
     background-color: white;
     margin:auto;	/* centered */
 }
-
 table.invisible th {
     border: none;
     padding: 6px;
 }
-
 table.invisible td {
     border: none;
     padding: 6px;
@@ -103,16 +130,17 @@ table.invisible td {
 .content {
     background-color: #d0d5e6;
     padding: 30px;
-    font-family: Verdana, Arial, sans-serif;
+	font-family: 'Raleway', sans-serif;
     width: 100%;
     box-sizing: border-box;
     
 	margin-top: 30px;
+	margin-left: 30px;
 }
 
 .feed-content {
-    margin-left: 160px;
-    padding: 0px 10px;
+    background-color: white;
+    padding: 30px;
 }
 
 .feed-description img {

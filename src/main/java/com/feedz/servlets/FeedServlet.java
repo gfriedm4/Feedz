@@ -100,6 +100,7 @@ public class FeedServlet extends HttpServlet {
                     items.add(item);
                 }
 
+                request.setAttribute("feedTitle", feed.getTitle());
                 request.setAttribute("feedItems", items);
                 if (request.getRequestURI().contains("user")) {
                     request.getRequestDispatcher("/user/feed.jsp").forward(request, response);

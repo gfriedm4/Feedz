@@ -6,6 +6,7 @@ import com.feedz.controllers.UserController;
 import com.feedz.models.User;
 import com.feedz.models.Feed;
 import com.feedz.models.FeedUser;
+import java.util.Date;
 
 import java.util.List;
 import java.util.Set;
@@ -37,6 +38,8 @@ public class UserUtilities {
         newUser.setLastName(lastName);
         newUser.setHasNotifications(hasNotifications);
         newUser.setRole(role);
+        newUser.setCreated(new Date());
+        newUser.setUpdated(new Date());
         
         return UserController.createUser(newUser);
     }
@@ -77,7 +80,7 @@ public class UserUtilities {
     public static User updateUser(User user) {
     		String unhashed = user.getPassword();
     		user.setPassword(BCrypt.hashpw(unhashed, BCrypt.gensalt()));
-    		
+                
     		return UserController.updateUser(user);
     }
     

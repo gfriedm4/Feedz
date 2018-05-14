@@ -26,7 +26,6 @@ import com.feedz.models.User;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 import org.hibernate.HibernateException;
 
 /**
@@ -57,7 +56,7 @@ public class FeedUtilities {
                 }
                 
                 feedModel.setUpdated(new Date());
-                feedModel.setCreated(feed.getPublishedDate());
+                feedModel.setCreated(new Date());
                 
                 FeedController.createFeed(feedModel);
             }

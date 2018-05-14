@@ -13,6 +13,7 @@ import com.feedz.controllers.FeedUserController;
 import com.feedz.controllers.UserController;
 import com.feedz.models.User;
 import com.feedz.utils.UserUtilities;
+import java.util.Date;
 
 @WebServlet({"/user/UserServlet", "/admin/UserServlet"})
 public class UserServlet extends HttpServlet {
@@ -143,7 +144,8 @@ public class UserServlet extends HttpServlet {
                     else {
                         user.setRole(0);
                     }
-
+                       
+                    user.setUpdated(new Date());
                     user = UserController.updateUser(user);
 
                     if(user != null) {
@@ -169,10 +171,11 @@ public class UserServlet extends HttpServlet {
 			String password = request.getParameter("confirmNewPassword");
 			if(password != null) {
 				user.setPassword(password);
-				User newUser = UserUtilities.updateUser(user);
+                                user.setUpdated(new Date());
+				User updatedUser = UserUtilities.updateUser(user);
 				
-				if(newUser != null) {
-					request.getSession().setAttribute("user", newUser);
+				if(updatedUser != null) {
+					request.getSession().setAttribute("user", updatedUser);
 					return "/user/profile.jsp";
 				}
 				else {

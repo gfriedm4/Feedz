@@ -18,7 +18,7 @@
 	<div class="content">
 		<h1>Manage Users</h1>
 		<div class="content-white">
-			<table class="long">
+			<table class="standard">
 				<tr>
 					<th>User ID</th>
 					<th>Last Name</th>

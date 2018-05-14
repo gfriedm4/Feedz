@@ -22,7 +22,7 @@ public class User  implements java.io.Serializable {
     private Date created;
     private Date updated;
     private Integer role;
-    private Set<FeedUser> feedUsers = new HashSet<FeedUser>(0);
+    private Set<FeedUser> feedUsers = new HashSet<>();
 
     public static final HashMap<Integer, String> ROLES;
     

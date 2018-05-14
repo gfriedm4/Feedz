@@ -42,8 +42,6 @@ Contributor(s):
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="feedz"/>
   <table-filter match-name="user"/>
-  <table-filter match-name="media_item"/>
   <table-filter match-name="feed"/>
-  <table-filter match-name="feed_item"/>
   <table-filter match-name="feed_user"/>
 </hibernate-reverse-engineering>

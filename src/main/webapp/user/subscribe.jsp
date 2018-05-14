@@ -1,3 +1,7 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="com.feedz.models.FeedUser"%>
+<%@page import="java.util.Set"%>
+<%@page import="com.feedz.models.User"%>
 <%@page import="com.feedz.controllers.FeedController"%>
 <%@page import="com.feedz.models.Feed"%>
 <%@page import="java.util.List"%>
@@ -40,7 +44,15 @@
 				</tr>
 				
 				<% List<Feed> feedList = FeedController.listFeeds(); %>
-				
+				<% User user = (User) request.getSession().getAttribute("user"); %>
+                                <% Set<FeedUser> feedUsers = user.getFeedUsers(); %>
+                                <% 
+                                    Set<Integer> userFeeds = new HashSet();
+                                    for (FeedUser feedUser : feedUsers) {
+                                        userFeeds.add(feedUser.getFeed().getId());
+                                    }
+                                %>
+                                        
 				<% for(Feed f : feedList) {%>
 				<tr>
 				<td><%if (f.getImage() != null) {%>
@@ -54,7 +66,11 @@
 						<form action="FeedServlet" method="POST">
 							<input type="hidden" name="feedId" value="<%out.print(f.getId());%>">
 							<input type="hidden" name="action" value="subscribeToFeed">
-							<input type="submit" name="subscribe" value="Subscribe">
+                                                        <% if (userFeeds.contains(f.getId())) { %>
+                                                            <input type="submit" name="subscribe" disabled="disabled" value="Subscribe">
+                                                        <% } else { %>
+                                                            <input type="submit" name="subscribe" value="Subscribe">
+                                                        <% } %>
 						</form>
 					</td>
 				</tr>

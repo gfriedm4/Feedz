@@ -5,6 +5,7 @@
  */
 package com.feedz.servlets;
 
+import com.feedz.controllers.UserController;
 import com.feedz.models.FeedItem;
 import com.feedz.models.FeedUser;
 import com.feedz.models.User;
@@ -48,6 +49,11 @@ public class FeedServlet extends HttpServlet {
             int feedId = Integer.parseInt(request.getParameter("feedId"));
             int userId = ((User)request.getSession().getAttribute("user")).getId();
             UserUtilities.addFeedToUser(userId, feedId);
+            
+            // Update session user
+			User updatedUser = UserController.getUserById(userId);
+			request.getSession().setAttribute("user", updatedUser);
+            
             request.getRequestDispatcher("/user/editfeed.jsp").forward(request, response);
             return;
         }
@@ -58,6 +64,11 @@ public class FeedServlet extends HttpServlet {
             int feedId = Integer.parseInt(request.getParameter("feedId"));
             int userId = ((User)request.getSession().getAttribute("user")).getId();
             UserUtilities.removeFeedFromUser(userId, feedId);
+            
+			// Update session user
+			User updatedUser = UserController.getUserById(userId);
+			request.getSession().setAttribute("user", updatedUser);
+            
             request.getRequestDispatcher("/user/editfeed.jsp").forward(request, response);
             return;
         }

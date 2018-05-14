@@ -95,10 +95,10 @@ public class FeedUtilities {
                 if (a.getCreated() != null && b.getCreated() != null) {
                     return b.getCreated().compareTo(a.getCreated());
                 }
-                else if(a.getCreated() == null) {
+                else if(a.getCreated() != null) {
                     return 1;
                 }
-                else if(b.getCreated() == null) {
+                else if(b.getCreated() != null) {
                     return -1;
                 }
                 return 0;
@@ -115,7 +115,6 @@ public class FeedUtilities {
     }
     
     public static SyndFeed getSyndFeed(ArrayList<Integer> feedIds) {
-        
         List<Feed> feeds = FeedController.getFeeds(feedIds);
         
         SyndFeed toReturn = new SyndFeedImpl();

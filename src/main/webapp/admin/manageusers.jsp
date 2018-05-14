@@ -16,6 +16,9 @@
 <body>
 	<%@ include file="/includes/admin/topnav.jsp" %>
 	<div class="content">
+            <% if(request.getAttribute("message") != null) { %>
+                	<p style="text-align: center; color: red; margin: auto;">${message}</p>
+            <% } %>
 		<h1>Manage Users</h1>
 		<div class="content-white">
 			<table class="standard">
@@ -75,7 +78,14 @@
 				<% }%>
 				</table>
 				<br>
+                                <div>
+                    <form action="UserServlet" method="POST">
+                        <input type="hidden" name="action" value="adminSendNotifications">
+                        <input class="feednav-btn" style="text-align:center" type="submit" value="Send User Notifications">
+                    </form>
+                </div>
 		</div>
+                
 	</div>
 	<%@ include file="/includes/footer.jsp" %>
 </body>

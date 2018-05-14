@@ -198,5 +198,30 @@ public class UserController {
         }
         return null;
     }
+    
+    public static List<User> getNotificationUsers() {
+        Session session = HibernateConnector.getSessionFactory().openSession();
+        
+        try {            
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> cq = builder.createQuery(User.class);
+            Root<User> root = cq.from(User.class);
+            cq.select(root);
+            Predicate predicate = builder.equal(root.get("hasNotifications"), true);
+            cq.where(predicate);
+            Query<User> q = session.createQuery(cq);
+            List<User> users = q.getResultList();
+            
+            session.close();
+            return users;
+        }
+        catch (HibernateException e) {
+                    
+        }
+        finally {
+            session.close();
+        }
+        return null;
+    }
 
 }

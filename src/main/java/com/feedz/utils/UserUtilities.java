@@ -41,6 +41,11 @@ public class UserUtilities {
         newUser.setCreated(new Date());
         newUser.setUpdated(new Date());
         
+        if (newUser.isHasNotifications()) {
+            EmailUtilities.sendEmail(email, "Welcome to Feedz", "<h2>Welcome to Feedz!</h2><div>You are welcome to "
+                + "create a feed of your own now that you have registered.</div><h4>Sincerely,</h4><h4>Feedz Team</h4>");
+        }
+        
         return UserController.createUser(newUser);
     }
     

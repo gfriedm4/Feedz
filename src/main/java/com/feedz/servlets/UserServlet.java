@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.feedz.controllers.FeedUserController;
 import com.feedz.controllers.UserController;
 import com.feedz.models.User;
+import com.feedz.utils.EmailUtilities;
 import com.feedz.utils.UserUtilities;
 import java.util.Date;
 
@@ -41,33 +42,42 @@ public class UserServlet extends HttpServlet {
 		String url = "";
 		
 		if(action == null) {
-			// send to error page
+                    // send to error page
 		}
 		else if(action.equals("Login")) {
-			url = handleLoginAttempt(request, response);
+                    url = handleLoginAttempt(request, response);
 		}
 		else if(action.equals("register")) {
-			url = handleUserRegistration(request, response);
+                    url = handleUserRegistration(request, response);
 		}
 		else if(action.equals("updateProfile")) {
-			url = handleProfileUpdate(request, response);
+                    url = handleProfileUpdate(request, response);
 		}
 		else if(action.equals("updatePassword")) {
-			url = handlePasswordUpdate(request, response);
+                    url = handlePasswordUpdate(request, response);
 		}
 		else if(action.equals("adminLogin")) {
-			url = handleAdminLogin(request, response);
+                    url = handleAdminLogin(request, response);
 		}
 		else if(action.equals("adminRemoveUser")) {
-			url = handleAdminRemoveUser(request, response);
+                    url = handleAdminRemoveUser(request, response);
 		}
 		else if(action.equals("subscribeToFeed")) {
-			url = handleSubscribeToFeed(request, response);
+                    url = handleSubscribeToFeed(request, response);
 		}
+                else if(action.equals("adminSendNotifications")) {
+                    url = handleAdminSendNotifications(request, response);
+                }
 
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 	
+        protected String handleAdminSendNotifications(HttpServletRequest request, HttpServletResponse response) {
+            EmailUtilities.sendFeedUpdates();
+            request.setAttribute("message", "Successfully sent updates to all users!");
+            return "/admin/manageusers.jsp";
+        }
+        
 	protected String handleLoginAttempt(HttpServletRequest request, HttpServletResponse response){
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");

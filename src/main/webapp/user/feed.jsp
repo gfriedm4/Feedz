@@ -58,12 +58,12 @@
                                 DateFormat timeFormat = new SimpleDateFormat("hh:mm a");
                                 out.print("<h4>" + dateFormat.format(feedItem.getCreated()) + " at " + timeFormat.format(feedItem.getCreated()) + "</h4>");
                             }
-				if (!feedItem.getDescription().isEmpty()) { %>
+				if (feedItem.getDescription() != null && !feedItem.getDescription().isEmpty()) { %>
 			<div class="feed-description">
 				<% out.print(feedItem.getDescription());%>
 			</div>
 			<% }
-			     if (!feedItem.getLink().isEmpty()) {
+			     if (feedItem.getLink() != null && !feedItem.getLink().isEmpty()) {
 				%>
 			<a class="feed-link" href="<%= feedItem.getLink() %>">
 			<% out.print(feedItem.getLink()); %>    

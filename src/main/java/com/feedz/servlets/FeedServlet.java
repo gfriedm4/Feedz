@@ -88,9 +88,13 @@ public class FeedServlet extends HttpServlet {
 
                     FeedItem item = new FeedItem();
                     item.setAuthor(syndEntry.getAuthor());
-                    item.setCategory(syndEntry.getCategories().toString());
+                    if (syndEntry.getCategories() != null) {
+                        item.setCategory(syndEntry.getCategories().toString());
+                    }
                     item.setComments(syndEntry.getComments());
-                    item.setDescription(syndEntry.getDescription().getValue());
+                    if (syndEntry.getDescription() != null) {
+                       item.setDescription(syndEntry.getDescription().getValue()); 
+                    }
                     item.setLink(syndEntry.getLink());
                     item.setTitle(syndEntry.getTitle());
                     item.setCreated(syndEntry.getPublishedDate());

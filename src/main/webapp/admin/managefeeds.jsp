@@ -39,7 +39,14 @@
 					<td><%out.print(f.getId());%></td>
 					<td><%out.print(f.getTitle());%></td>
 					<td><%out.print(f.getUrl());%></td>
-					<td><%out.print(f.getDescription());%></td>
+					<td class="wrap">
+					<% String descr = f.getDescription();
+					if (descr.length() < 103)
+						out.print(descr);
+					else
+						out.print(descr.substring(0, 100)+"...");
+					%>
+					</td>
 					<td><%if (f.getImage() != null) {%>
 						<IMG SRC="<%out.print(f.getImage());%>"> 
 						<% } else { %>

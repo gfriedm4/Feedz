@@ -57,7 +57,14 @@
 					</td>
 					<td><%out.print(f.getTitle());%></td>
 					<td><%out.print(f.getUrl());%></td>
-					<td><%out.print(f.getDescription());%></td>
+					<td class="wrap">
+					<% String descr = f.getDescription();
+					if (descr.length() < 103)
+						out.print(descr);
+					else
+						out.print(descr.substring(0, 100)+"...");
+					%>
+					</td>
 					<td>
 						<form action="FeedServlet" method="POST">
                                                     <input type="hidden" name="feedId" value="<%= f.getId() %>">

@@ -59,10 +59,13 @@
 					<td><%out.print(f.getUrl());%></td>
 					<td class="wrap">
 					<% String descr = f.getDescription();
-					if (descr.length() < 103)
-						out.print(descr);
-					else
-						out.print(descr.substring(0, 100)+"...");
+					if (descr!= null)
+					{
+						if (descr.length() < 103)
+							out.print(descr);
+						else
+							out.print(descr.substring(0, 100)+"...");
+					}
 					%>
 					</td>
 					<td>

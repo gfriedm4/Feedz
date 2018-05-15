@@ -18,7 +18,7 @@
 					Feed f = feedUser.getFeed();%>
 				<tr>
 					<td><%if (f.getImage() != null) {%>
-						<IMG src="<%= f.getImage() %>" height="42" width="42"> 
+						<IMG src="<%= f.getImage() %>" width="75"> 
 						<% } %>
 					</td>
 					<td>

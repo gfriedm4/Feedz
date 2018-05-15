@@ -337,7 +337,7 @@ li a:hover:not(.active) {
 .feednav {
 	margin-top: 43px;
     height: 100%;
-    width: 220px;
+    width: 260px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -372,7 +372,7 @@ li a:hover:not(.active) {
 }
 
 .main {
-    margin-left: 200px; /* Same as the width of the feednav */
+    margin-left: 260px; /* Same as the width of the feednav */
     padding: 0px 10px;
 }
 

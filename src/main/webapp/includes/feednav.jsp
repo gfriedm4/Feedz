@@ -12,7 +12,7 @@
 				<% for(Feed f : feedList) {%>
 				<tr>
 					<td><%if (f.getImage() != null) {%>
-						<IMG src="<%out.print(f.getImage());%>" height="42" width="42"> 
+						<IMG src="<%out.print(f.getImage());%>" width="75"> 
 						<% } %>
 					</td>
 					<td>

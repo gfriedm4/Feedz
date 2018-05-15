@@ -83,6 +83,12 @@ table.long  td {
 	font-size: 0.7em;
     border: none;
     padding: 5px;
+    white-space: nowrap;
+}
+table.long td.wrap {
+    white-space: normal;
+    word-break: break-all;
+    display: block;
 }
 
 table.standard {
@@ -105,7 +111,14 @@ table.standard tr:nth-child(even){
 table.standard  td {
     border: none;
     padding: 5px;
+    white-space: nowrap;
 }
+table.standard td.wrap {
+    white-space: normal;
+    word-break: break-all;
+    display: block;
+}
+
 
 table.invisible {
     border: none;

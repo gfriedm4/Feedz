@@ -8,16 +8,16 @@
       <generator class="identity"/>
     </id>
     <property name="title" type="string">
-      <column length="100" name="title"/>
+      <column length="255" name="title"/>
     </property>
     <property name="url" type="string">
-      <column length="100" name="url"/>
+      <column length="255" name="url"/>
     </property>
     <property name="description" type="string">
-      <column length="100" name="description"/>
+      <column length="255" name="description"/>
     </property>
     <property name="image" type="string">
-      <column length="100" name="image"/>
+      <column length="255" name="image"/>
     </property>
     <property name="created" type="timestamp">
       <column length="19" name="created"/>

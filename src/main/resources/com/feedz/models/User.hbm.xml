@@ -8,16 +8,16 @@
       <generator class="identity"/>
     </id>
     <property name="firstName" type="string">
-      <column length="50" name="first_name"/>
+      <column length="255" name="first_name"/>
     </property>
     <property name="lastName" type="string">
-      <column length="50" name="last_name"/>
+      <column length="255" name="last_name"/>
     </property>
     <property name="email" type="string">
-      <column length="50" name="email"/>
+      <column length="255" name="email"/>
     </property>
     <property name="password" type="string">
-      <column length="100" name="password"/>
+      <column length="255" name="password"/>
     </property>
     <property name="hasNotifications" type="boolean">
       <column name="has_notifications" not-null="true"/>
